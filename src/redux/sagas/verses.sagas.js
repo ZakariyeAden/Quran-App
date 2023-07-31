@@ -2,7 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-// GET the id of Chapter and use Quran API to display the Verses
+// GET the id of Chapter and use Quran API to display the Verses for each chapter
 // Use .env to keep it Private
 function* fetchChapterVerses(action){
   try{

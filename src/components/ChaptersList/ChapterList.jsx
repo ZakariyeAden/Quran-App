@@ -22,7 +22,7 @@ const ChapterList = () => {
     <div>
       <Grid container spacing={2}>
         {chapters.map(chapter => {
-          return <ChapterItem chapter={chapter}/>;
+          return <ChapterItem chapter={chapter} key={chapter.id}/>;
         })}
       </Grid>
     </div>
