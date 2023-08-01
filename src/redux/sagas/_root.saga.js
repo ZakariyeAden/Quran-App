@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import chaptersSaga from './chapters.sagas';
 import chapterItemSaga from './chapterItem.sagas';
+import versesSaga from './verses.sagas'
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,5 +19,6 @@ export default function* rootSaga() {
     userSaga(),
     chaptersSaga(),
     chapterItemSaga(),
+    versesSaga(),
   ]);
 }
