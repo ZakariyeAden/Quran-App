@@ -13,16 +13,20 @@ import {
 const ChapterItem = ({ chapter }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  
   // Get the Chapter Id and dispatch:
   const getChapterId = id => {
-    dispatch({ type: "FETCH_VERSES", payload: id });
+    // Chapter Id selected by user:
+    console.log("Chapter Id:", id);
+    // Dispatch
+    dispatch({ type: "SET_CHAPTER_ITEM", payload: id });
     // Route to Verses page
-    history.push(`/user/${id}`);
+    history.push(`/user/${id.id}`);
   };
   return (
     <div>
       <Grid item lg={8} md={4} xs={6}>
-        <Card sx={{ minWidth: 375 }} onClick={() => getChapterId(chapter.id)}>
+        <Card sx={{ minWidth: 375 }} onClick={() => getChapterId(chapter)}>
           <CardContent className="card">
             <Typography color="text.secondary">
               {chapter.chapter_number}

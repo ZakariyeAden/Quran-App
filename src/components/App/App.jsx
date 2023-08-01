@@ -63,9 +63,8 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
-            path="/user:id"
+            path="/user/:id"
           >
             <VersesList />
           </ProtectedRoute>
