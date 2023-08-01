@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   Axios.get(`https://api.alquran.cloud/${process.env.VERSES_API_KEY}`)
     .then(response => {
       // Send the response
-      res.send(response.data);
+      res.send(response.data.data);
     })
     // Catch any ERRORs
     .catch(err => {
