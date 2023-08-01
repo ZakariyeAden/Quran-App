@@ -10,7 +10,7 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
-const ChapterItem = ({ chapter }) => {
+const ChapterCard = ({ chapter }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   
@@ -48,4 +48,4 @@ const ChapterItem = ({ chapter }) => {
   );
 };
 
-export default ChapterItem;
+export default ChapterCard;

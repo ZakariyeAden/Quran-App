@@ -15,7 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // Components
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import ChapterList from '../ChaptersList/ChapterList';
+import Chapters from '../Chapters/Chapters';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -59,7 +59,7 @@ function App() {
             exact
             path="/user"
           >
-            <ChapterList />
+            <Chapters />
           </ProtectedRoute>
 
           <ProtectedRoute

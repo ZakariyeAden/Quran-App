@@ -2,16 +2,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  Grid,
-  Card,
-  Typography,
-  CardContent,
-  Button,
-  CardActions,
+  Grid
 } from "@mui/material";
-import ChapterItem from "../ChapterItem/ChapterItem";
+import ChapterCard from "../ChapterCard/ChapterCard";
 
-const ChapterList = () => {
+const Chapters = () => {
   const dispatch = useDispatch();
   const chapters = useSelector(state => state.chapters);
   // Load all of the Chapters
@@ -22,11 +17,11 @@ const ChapterList = () => {
     <div>
       <Grid container spacing={2}>
         {chapters.map(chapter => {
-          return <ChapterItem chapter={chapter} key={chapter.id}/>;
+          return <ChapterCard chapter={chapter} key={chapter.id}/>;
         })}
       </Grid>
     </div>
   );
 };
 
-export default ChapterList;
+export default Chapters;
