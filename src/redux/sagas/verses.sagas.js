@@ -5,10 +5,11 @@ import axios from "axios";
 // Target the id for each chapter in dispach! 
 // And display in DOM for client side
 function* fetchVerses(action) {
+  
   try {
-    const verses = yield axios.get(`/api/verses/${action.payload}`);
+    const verses = yield axios.get(`/verses/${action.payload}`);
 
-    yield put({ type: "SET_VERSES", payload: verses.data });
+    yield put({ type: "SET_VERSES", payload: verses.data.data });
     // Catch any errors
   } catch (err) {
     console.log("ERROR in GET sagas verses:", err);
