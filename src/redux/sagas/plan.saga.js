@@ -13,7 +13,7 @@ function* setPlan(action){
 }
 
 function* planSagas(){
-  yield takeLatest('FETCH_PLAN', setPlan);
+  yield takeLatest('ADD_PLAN', setPlan);
 }
 
 export default planSagas;

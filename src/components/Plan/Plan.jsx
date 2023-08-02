@@ -14,6 +14,7 @@ const Plan = () => {
   const [chapterInput, setChapterInput] = useState("");
   const [dateInput, setDateInput] = useState("");
   const chapters = useSelector(state => state.chapters);
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch();
 
 
