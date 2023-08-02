@@ -2,9 +2,9 @@ import React from 'react'
 
 const Plan = () => {
   return (
-    <div>
+    <form>
       
-    </div>
+    </form>
   )
 }
 
