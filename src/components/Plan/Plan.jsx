@@ -14,16 +14,25 @@ const Plan = () => {
   const [chapterInput, setChapterInput] = useState("");
   const [dateInput, setDateInput] = useState("");
   const chapters = useSelector(state => state.chapters);
-  const user = useSelector(state => state.user)
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-
 
   // Submit
   const handleSubmit = event => {
     event.preventDefault();
     // See the logs after submit
-    console.log('Date:',dateInput);
-    console.log('Chapter:',chapterInput);
+    console.log("Date:", dateInput);
+    console.log("Chapter:", chapterInput);
+
+    dispatch({
+      type: "ADD_PLAN",
+      // Data
+      payload: {
+        chapter: chapterInput,
+        plan_id: user.id,
+        deadline: dateInput,
+      },
+    });
   };
 
   // Load Chapters names
@@ -31,7 +40,7 @@ const Plan = () => {
     dispatch({ type: "FETCH_CHAPTERS" });
   }, []);
   return (
-    <FormControl  >
+    <FormControl>
       <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
       <Select
         labelId="demo-simple-select-label"
@@ -42,7 +51,7 @@ const Plan = () => {
       >
         {chapters.map(chapter => {
           return (
-            <MenuItem key={chapter.id} value={chapter.name}>
+            <MenuItem key={chapter.id} value={chapter.id}>
               {chapter.name}
             </MenuItem>
           );
@@ -53,7 +62,9 @@ const Plan = () => {
       <TextField type="date" onChange={e => setDateInput(e.target.value)}>
         Date
       </TextField>
-      <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+      <Button variant="contained" onClick={handleSubmit}>
+        Submit
+      </Button>
     </FormControl>
   );
 };

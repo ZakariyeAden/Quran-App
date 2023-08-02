@@ -4,7 +4,7 @@ import user from './user.reducer';
 import chapters from '../reducers/chapters.reducer'
 import chapterItem from './chapterItem.reducer';
 import verses from './verses.reducer'
-import plan from './plan.reducer'
+import form from './form.reducer'
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   chapters,
   chapterItem,
   verses,
-  plan
+  form
 });
 
 export default rootReducer;
