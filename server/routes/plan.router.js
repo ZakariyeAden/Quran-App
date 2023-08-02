@@ -18,7 +18,7 @@ router.post("/", (req, res) => {
   pool
     .query(queryText, planParams)
     .then(result => {
-      console.log("Recieved chapter plan from user into DB", chapterPlan);
+      console.log("INSERTED chapter plan from user into DB", chapterPlan);
       // Send an OK status in POSTMAN
       res.sendStatus(201);
       // Catch any Errors
@@ -29,5 +29,24 @@ router.post("/", (req, res) => {
       res.sendStatus(501);
     });
 });
+
+// GET for plan
+router.get("/", (req,res) => {
+  let queryText = `SELECT * FROM "chapter_plan"
+                   JOIN "chapter"
+                   ON "chapter"."id"  = "chapter_plan"."chapter_id";`;
+
+  pool.query(queryText)
+  .then((result) => {
+    console.log('Recieved chapter plan from user into DB',result.rows);
+    // Send the data!
+    res.send(result.rows);
+    // Catch any ERRORS
+  }).catch((err) => {
+    console.log(`ERROR in GET for chapter plan: ${queryText}`,err);
+    // Send an ERROR status
+    res.sendStatus(501);
+  })
+})
 
 module.exports = router;
