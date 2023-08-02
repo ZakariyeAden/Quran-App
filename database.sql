@@ -152,3 +152,22 @@ VALUES
 
 --  SELECT From Chapter Table
 SELECT * FROM "chapter";
+
+-- INSERT ALL OF THE USERS IN THE PLAN
+INSERT INTO "plan" ("user_id")
+VALUES 
+(1);
+
+-- TESTING INSERT for POST
+INSERT INTO "chapter_plan" ("chapter_id","plan_id","deadline" )
+VALUES (1,1,'12/12/2023');
+
+-- GET for plan
+SELECT * FROM "chapter_plan"
+JOIN "chapter"
+ON "chapter"."id"  = "chapter_plan"."chapter_id";
+
+-- DELETE
+DELETE FROM "chapter_plan" WHERE id = 1;
+-- UPDATE by id
+UPDATE "chapter_plan" SET "completed" = TRUE WHERE id = 1;
