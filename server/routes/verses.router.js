@@ -2,14 +2,16 @@ const Axios = require("axios");
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
 
 // API from alquran for Verses.
 // MUST keep the api private by .env and putting it .gitignore
-  Axios.get(`https://api.alquran.cloud/${process.env.VERSES_API_KEY}`)
+// https://api.alquran.cloud/v1/surah
+// https://api.alquran.cloud/v1/surah/
+  Axios.get(`https://api.alquran.cloud/v1/surah/${req.params.id}`)
     .then(response => {
       // Send the response
-      res.send(response.data.data);
+      res.send(response.data);
     })
     // Catch any ERRORs
     .catch(err => {
