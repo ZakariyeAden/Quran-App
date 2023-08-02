@@ -14,15 +14,14 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // Components
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
 import Chapters from '../Chapters/Chapters';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VersesList from '../VersesList/VersesList';
 
 import './App.css';
+import Plan from '../Plan/Plan';
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +68,12 @@ function App() {
             <VersesList />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            exact
+            path="/plan"
+          >
+            <Plan/>
+          </ProtectedRoute>
           <Route
             exact
             path="/login"
