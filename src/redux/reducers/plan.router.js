@@ -1,4 +1,4 @@
-const planReducer = (state = {}, action) => {
+const planReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PLAN':
       return action.payload;

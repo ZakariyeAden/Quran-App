@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-  Button,
+  Table,
+  TableContainer,
+  Paper,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+// Moment Library to fix the Date
+import moment from "moment";
 
 const Plan = () => {
   // HOOKS
@@ -18,7 +21,44 @@ const Plan = () => {
   useEffect(() => {
     dispatch({ type: "FETCH_PLAN" });
   }, []);
-  return <div>Plan in Progress...</div>;
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Chapter</TableCell>
+            <TableCell align="right">Date:</TableCell>
+            <TableCell align="right">Deadline:</TableCell>
+            <TableCell align="right">Completed:</TableCell>
+            <TableCell align="right">Edit:</TableCell>
+            <TableCell align="right">Remove:</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {plans.map(row => {
+            // Formatting the date with moment library without Time from Database
+            let currentDate = moment(row.current_date);
+            let deadline = moment(row.deadline);
+            return (
+              <TableRow
+                key={row}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">{currentDate.format("L")}</TableCell>
+                <TableCell align="right">{deadline.format("L")}</TableCell>
+                <TableCell align="right">Completed?</TableCell>
+                <TableCell align="right">Edit?</TableCell>
+                <TableCell align="right">Delete?</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 };
 
 export default Plan;
