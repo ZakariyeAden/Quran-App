@@ -1,9 +1,7 @@
 // HOOKS
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Grid
-} from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import ChapterCard from "../ChapterCard/ChapterCard";
 
 const Chapters = () => {
@@ -17,7 +15,7 @@ const Chapters = () => {
     <div>
       <Grid container spacing={2}>
         {chapters.map(chapter => {
-          return <ChapterCard chapter={chapter} key={chapter.id}/>;
+          return <ChapterCard chapter={chapter} key={chapter.id} />;
         })}
       </Grid>
     </div>

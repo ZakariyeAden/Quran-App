@@ -1,5 +1,5 @@
-import React from "react";
 // HOOKS
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
@@ -9,39 +9,42 @@ import {
   CardContent,
   Button,
   CardActions,
+  Container,
 } from "@mui/material";
+import FormModal from "../FormModal/FormModal";
 const ChapterCard = ({ chapter }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  
+  const [open,setOpen] = useState(false);
   // Get the Chapter Id and dispatch:
   const getChapterId = id => {
     // Chapter Id selected by user:
     console.log("Chapter Id:", id);
-    // Dispatch
+    // Dispatchs for Indivual Chapter and Verses
     dispatch({ type: "SET_CHAPTER_ITEM", payload: id });
+    dispatch({ type: "SET_VERSES", payload: id.id });
     // Route to Verses page
     history.push(`/user/${id.id}`);
   };
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
   return (
     <div>
-      <Grid item lg={8} md={4} xs={6}>
-        <Card sx={{ minWidth: 375 }} onClick={() => getChapterId(chapter)}>
-          <CardContent className="card">
-            <Typography color="text.secondary">
-              {chapter.chapter_number}
-            </Typography>
-            <Typography variant="h5" component="div">
-              {chapter.name}
-            </Typography>
-            <Typography color="text.secondary">
-              {chapter.arabic_name}
-            </Typography>
-            <Typography color="text.secondary">
-              {chapter.translated_name}
-            </Typography>
-            <Button size="small">Bookmark</Button>
+      {/* Form Modal after user Clicks add to plan */}
+      <FormModal open={open} handleCloseModal={handleCloseModal}/>
+      <Grid item lg={3} md={4} xs={6}>
+        <Card sx={{ minWidth: 375 }}>
+          <CardContent onClick={() => getChapterId(chapter)} className="card">
+            <Typography>{chapter.chapter_number}</Typography>
+            <Typography>{chapter.name}</Typography>
+            <Typography>{chapter.arabic_name}</Typography>
+            <Typography>{chapter.translated_name}</Typography>
           </CardContent>
+          <Button size="small" onClick={handleOpenModal}>Bookmark</Button>
         </Card>
       </Grid>
     </div>
