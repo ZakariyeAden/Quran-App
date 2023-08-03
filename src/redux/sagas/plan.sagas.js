@@ -13,18 +13,7 @@ function* fetchChapterPlan() {
   }
 }
 
-// Delete by Id
-function* deletePlanId(action) {
-  try {
-     yield axios.delete(`/plan/${action.payload}`);
-    
-    yield put({ type: "FETCH_PLAN"});
-    // Catch any errors
-  } catch (err) {
-    console.log("ERROR in Delete sagas Plan:", err);
-  }
-}
-// Delete by Id
+// update by Id
 function* updatePlanId(action) {
   try {
      yield axios.put(`/plan/${action.payload}`);
@@ -38,7 +27,6 @@ function* updatePlanId(action) {
 
 function* planSaga() {
   yield takeLatest("FETCH_PLAN", fetchChapterPlan);
-  yield takeLatest("DELETE_PLAN", deletePlanId);
   yield takeLatest('UPDATE_PLAN', updatePlanId)
 }
 
