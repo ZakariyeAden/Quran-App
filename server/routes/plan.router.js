@@ -49,4 +49,18 @@ router.get("/", (req,res) => {
   })
 })
 
+// Delete by Id for Plan
+router.delete("/:id", (req,res) => {
+  let idToDelete = req.params.id;
+  let queryText = `DELETE FROM "chapter_plan" WHERE id = $1;`;
+
+  pool.query(queryText, [idToDelete])
+  .then((result) => {
+    // Send an OK status
+    res.sendStatus(201);
+  }).catch((err) => {
+    console.log(`ERROR in Deleting Plan by Id: ${queryText}`, err);
+  })
+})
+
 module.exports = router;
