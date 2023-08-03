@@ -79,7 +79,7 @@ const FormModal = ({ open, handleCloseModal }) => {
               })}
             </Select>
 
-            <label>Date:</label>
+            <label>Deadline:</label>
             <TextField type="date" onChange={e => setDateInput(e.target.value)}>
               Date
             </TextField>
