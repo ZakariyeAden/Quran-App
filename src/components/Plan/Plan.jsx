@@ -17,12 +17,15 @@ const Plan = () => {
   const plans = useSelector(state => state.plan);
   const dispatch = useDispatch();
 
-  // Delete Plan by id
-  const handleDeleteById = id => {
+  // Delete and Update by Id
+  const handleById = id => {
     console.log("Delete Id from:", id);
-    
-    dispatch({ type: "DELETE_PLAN", payload:  id});
+
+    dispatch({ type: "DELETE_PLAN", payload: id });
+    dispatch({ type: "UPDATE_PLAN", payload: id });
   };
+
+
   // Load Plan
   useEffect(() => {
     dispatch({ type: "FETCH_PLAN" });
@@ -47,7 +50,7 @@ const Plan = () => {
             // let deadline = moment(row.deadline);
             return (
               <TableRow
-                key={row}
+                key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -55,10 +58,14 @@ const Plan = () => {
                 </TableCell>
                 <TableCell align="right">{row.current_date}</TableCell>
                 <TableCell align="right">{row.deadline}</TableCell>
-                <TableCell align="right">Completed?</TableCell>
-                <TableCell align="right">Edit?</TableCell>
                 <TableCell align="right">
-                  <button onClick={ () => handleDeleteById(row.id)}>
+                  <button onClick={() => handleById(row.id)}>
+                    Completed?
+                  </button>
+                </TableCell>
+                <TableCell align="right">Edit</TableCell>
+                <TableCell align="right">
+                  <button onClick={() => handleById(row.id)}>
                     Delete
                   </button>
                 </TableCell>
