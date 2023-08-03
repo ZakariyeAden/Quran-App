@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
     .then(result => {
       console.log("INSERTED chapter plan from user into DB", chapterPlan);
       // Send an OK status in POSTMAN
-      res.sendStatus(201);
+      res.sendStatus(200);
       // Catch any Errors
     })
     .catch(err => {
@@ -60,7 +60,7 @@ router.delete("/delete/:id", (req, res) => {
     .query(queryText, [idToDelete])
     .then(result => {
       // Send an OK status
-      res.sendStatus(201);
+      res.sendStatus(200);
     })
     .catch(err => {
       res.sendStatus(501);
@@ -76,10 +76,30 @@ router.put("/complete/:id", (req, res) => {
   pool
     .query(queryText, [idToUpdate])
     .then(result => {
-      res.sendStatus(201);
+       // Send an OK status
+      res.sendStatus(200);
     })
     .catch(err => {
       console.log(`ERROR in UPDATING complete: ${queryText}`, err);
+    });
+});
+
+router.put("/edit/:id", (req, res) => {
+  let idToUpdate = req.params.id;
+  let chapterPlan = req.body;
+  // Parameterization for Editing Plan!
+  let editPlanParam = [chapterPlan.chapter, chapterPlan.deadline, idToUpdate];
+  let queryText = `UPDATE "chapter_plan" SET "chapter_id" = $1, "deadline" = $2, "completed" = FALSE WHERE id = $3;`;
+
+  pool
+    .query(queryText, editPlanParam)
+    .then(response => {
+      // Send an OK status
+      res.sendStatus(200);
+      console.log("UPDATE plan by id in the database!");
+    })
+    .catch(err => {
+      console.log(`ERROR in updating PLAN edit: ${queryText}`,err);
     });
 });
 

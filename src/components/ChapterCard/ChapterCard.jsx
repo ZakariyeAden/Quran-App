@@ -26,9 +26,11 @@ const ChapterCard = ({ chapter }) => {
     // Route to Verses page
     history.push(`/user/${id.id}`);
   };
+  // Open Modal
   const handleOpenModal = () => {
     setOpen(true);
   };
+  // Close Modal
   const handleCloseModal = () => {
     setOpen(false);
   };

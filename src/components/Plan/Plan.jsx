@@ -9,6 +9,7 @@ import {
   TableBody,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+import EditFormModal from "../EditFormModal/EditFormModal";
 // Moment Library to fix the Date
 import moment from "moment";
 
@@ -16,7 +17,15 @@ const Plan = () => {
   // HOOKS
   const plans = useSelector(state => state.plan);
   const dispatch = useDispatch();
-
+  const [open, setOpen] = useState(false);
+  // Open Modal
+  const handleOpenModal = () => {
+    setOpen(true);
+  };
+  // Close Modal
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
   // Delete by Id
   const handleDelete = id => {
     console.log("Id Table row to delete from:", id);
@@ -33,6 +42,8 @@ const Plan = () => {
   }, []);
   return (
     <TableContainer component={Paper}>
+      {/* Edit Form Modal after user Clicks Edit to plan */}
+      <EditFormModal handleCloseModal={handleCloseModal} open={open}/>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -65,7 +76,7 @@ const Plan = () => {
                   </button>
                 </TableCell>
                 <TableCell align="right">
-                  <button>Edit?</button>
+                  <button onClick={handleOpenModal}>Edit?</button>
                 </TableCell>
                 <TableCell align="right">
                   <button onClick={() => handleDelete(row.id)}>Delete</button>

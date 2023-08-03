@@ -10,7 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-const FormModal = ({ open, handleCloseModal }) => {
+const EditFormModal = ({ open, handleCloseModal }) => {
   // HOOKS
   const [planInput, setPlanInput] = useState({ date: '', chapter: ''})
   const chapters = useSelector(state => state.chapters);
@@ -20,20 +20,9 @@ const FormModal = ({ open, handleCloseModal }) => {
   // Submit
   const handleSubmit = event => {
     event.preventDefault();
-    // See the logs after submit
-    console.log("Date:", planInput.date);
-    console.log("Chapter:", planInput.chapter);
+ 
 
-    dispatch({
-      type: "ADD_PLAN",
-      // Data: We need to only recieve the id from Client for chapters selected and user
-      //  since the Table in Database!
-      payload: {
-        chapter: planInput.chapter,
-        plan_id: user.id,
-        deadline: planInput.date,
-      },
-    });
+  
   };
   // Styling the Modal
   const style = {
@@ -92,4 +81,4 @@ const FormModal = ({ open, handleCloseModal }) => {
   );
 };
 
-export default FormModal;
+export default EditFormModal;
