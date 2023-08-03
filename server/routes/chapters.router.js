@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   .then((result) => {
     // Send the chapters to Client
     res.send(result.rows);
-    console.log('Recieve all of the chapters from DB:',result.rows);
+    console.log('Recieve all of the chapters from DB:');
     // Catch any Errors
   }).catch((err) => {
     console.log(`ERROR in GET chapters: ${queryText}`,err);
