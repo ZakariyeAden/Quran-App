@@ -12,8 +12,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 const FormModal = ({ open, handleCloseModal }) => {
   // HOOKS
-  const [chapterInput, setChapterInput] = useState("");
-  const [dateInput, setDateInput] = useState("");
+  const [planInput, setPlanInput] = useState({ date: '', chapter: ''})
   const chapters = useSelector(state => state.chapters);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
@@ -22,17 +21,17 @@ const FormModal = ({ open, handleCloseModal }) => {
   const handleSubmit = event => {
     event.preventDefault();
     // See the logs after submit
-    console.log("Date:", dateInput);
-    console.log("Chapter:", chapterInput);
+    console.log("Date:", planInput.date);
+    console.log("Chapter:", planInput.chapter);
 
     dispatch({
       type: "ADD_PLAN",
       // Data: We need to only recieve the id from Client for chapters selected and user
       //  since the Table in Database!
       payload: {
-        chapter: chapterInput,
+        chapter: planInput.chapter,
         plan_id: user.id,
-        deadline: dateInput,
+        deadline: planInput.date,
       },
     });
   };
@@ -66,9 +65,9 @@ const FormModal = ({ open, handleCloseModal }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="Age"
-              onChange={e => setChapterInput(e.target.value)}
-              value={chapterInput}
+              label="chapters"
+              onChange={e => setPlanInput({...planInput, chapter: e.target.value})}
+              value={planInput.chapter}
             >
               {chapters.map(chapter => {
                 return (
@@ -80,7 +79,7 @@ const FormModal = ({ open, handleCloseModal }) => {
             </Select>
 
             <label>Deadline:</label>
-            <TextField type="date" onChange={e => setDateInput(e.target.value)}>
+            <TextField type="date" onChange={e => setPlanInput({...planInput, date: e.target.value})}>
               Date
             </TextField>
             <Button variant="contained" onClick={handleSubmit}>
