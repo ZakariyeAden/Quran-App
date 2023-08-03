@@ -17,6 +17,12 @@ const Plan = () => {
   const plans = useSelector(state => state.plan);
   const dispatch = useDispatch();
 
+  // Delete Plan by id
+  const handleDeleteById = id => {
+    console.log("Delete Id from:", id);
+    
+    dispatch({ type: "DELETE_PLAN", payload:  id});
+  };
   // Load Plan
   useEffect(() => {
     dispatch({ type: "FETCH_PLAN" });
@@ -37,8 +43,8 @@ const Plan = () => {
         <TableBody>
           {plans.map(row => {
             // Formatting the date with moment library without Time from Database
-            let currentDate = moment(row.current_date);
-            let deadline = moment(row.deadline);
+            // let currentDate = moment(row.current_date);
+            // let deadline = moment(row.deadline);
             return (
               <TableRow
                 key={row}
@@ -47,11 +53,15 @@ const Plan = () => {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{currentDate.format("L")}</TableCell>
-                <TableCell align="right">{deadline.format("L")}</TableCell>
+                <TableCell align="right">{row.current_date}</TableCell>
+                <TableCell align="right">{row.deadline}</TableCell>
                 <TableCell align="right">Completed?</TableCell>
                 <TableCell align="right">Edit?</TableCell>
-                <TableCell align="right">Delete?</TableCell>
+                <TableCell align="right">
+                  <button onClick={ () => handleDeleteById(row.id)}>
+                    Delete
+                  </button>
+                </TableCell>
               </TableRow>
             );
           })}

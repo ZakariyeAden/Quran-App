@@ -31,36 +31,41 @@ router.post("/", (req, res) => {
 });
 
 // GET for plan
-router.get("/", (req,res) => {
-  let queryText = `SELECT * FROM "chapter_plan"
+router.get("/", (req, res) => {
+  let queryText = `SELECT *, "chapter"."id" AS "chapter_id"  FROM "chapter_plan"
                    JOIN "chapter"
                    ON "chapter"."id"  = "chapter_plan"."chapter_id";`;
 
-  pool.query(queryText)
-  .then((result) => {
-    console.log('Recieved chapter plan from user into DB',result.rows);
-    // Send the data!
-    res.send(result.rows);
-    // Catch any ERRORS
-  }).catch((err) => {
-    console.log(`ERROR in GET for chapter plan: ${queryText}`,err);
-    // Send an ERROR status
-    res.sendStatus(501);
-  })
-})
+  pool
+    .query(queryText)
+    .then(result => {
+      console.log("Recieved chapter plan from user into DB", result.rows);
+      // Send the data!
+      res.send(result.rows);
+      // Catch any ERRORS
+    })
+    .catch(err => {
+      console.log(`ERROR in GET for chapter plan: ${queryText}`, err);
+      // Send an ERROR status
+      res.sendStatus(501);
+    });
+});
 
 // Delete by Id for Plan
-router.delete("/:id", (req,res) => {
+router.delete("/:id", (req, res) => {
   let idToDelete = req.params.id;
   let queryText = `DELETE FROM "chapter_plan" WHERE id = $1;`;
 
-  pool.query(queryText, [idToDelete])
-  .then((result) => {
-    // Send an OK status
-    res.sendStatus(201);
-  }).catch((err) => {
-    console.log(`ERROR in Deleting Plan by Id: ${queryText}`, err);
-  })
-})
+  pool
+    .query(queryText, [idToDelete])
+    .then(result => {
+      // Send an OK status
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      res.sendStatus(501);
+      console.log(`ERROR in Deleting Plan by Id: ${queryText}`, err);
+    });
+});
 
 module.exports = router;
