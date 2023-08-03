@@ -19,12 +19,11 @@ const Plan = () => {
 
   // Delete and Update by Id
   const handleById = id => {
-    console.log("Delete Id from:", id);
+    console.log("Id Table row from:", id);
 
     dispatch({ type: "DELETE_PLAN", payload: id });
     dispatch({ type: "UPDATE_PLAN", payload: id });
   };
-
 
   // Load Plan
   useEffect(() => {
@@ -59,15 +58,11 @@ const Plan = () => {
                 <TableCell align="right">{row.current_date}</TableCell>
                 <TableCell align="right">{row.deadline}</TableCell>
                 <TableCell align="right">
-                  <button onClick={() => handleById(row.id)}>
-                    Completed?
-                  </button>
+                  <button onClick={() => handleById(row.id)}>Completed?</button>
                 </TableCell>
                 <TableCell align="right">Edit</TableCell>
                 <TableCell align="right">
-                  <button onClick={() => handleById(row.id)}>
-                    Delete
-                  </button>
+                  <button onClick={() => handleById(row.id)}>Delete</button>
                 </TableCell>
               </TableRow>
             );
