@@ -68,4 +68,18 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+// Update to Completed as True by id
+router.put("/:id",(req,res) => {
+  let idToUpdate = req.params.id;
+  let queryText = `UPDATE "chapter_plan" SET "completed" = TRUE WHERE id = $1;`
+
+  pool.query(queryText, [idToUpdate])
+  .then((result) => {
+    console.log('Updated completed to TRUE!');
+    res.sendStatus(201);
+  }).catch((err) => {
+    console.log(`ERROR in UPDATING complete: ${queryText}`,err);
+  })
+})
+
 module.exports = router;
