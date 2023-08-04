@@ -13,21 +13,8 @@ function* fetchChapterPlan() {
   }
 }
 
-// update by Id
-function* updatePlanId(action) {
-  try {
-     yield axios.put(`/plan/${action.payload}`);
-    
-    yield put({ type: "FETCH_PLAN"});
-    // Catch any errors
-  } catch (err) {
-    console.log("ERROR in Update sagas Plan:", err);
-  }
-}
-
 function* planSaga() {
   yield takeLatest("FETCH_PLAN", fetchChapterPlan);
-  yield takeLatest('UPDATE_PLAN', updatePlanId)
 }
 
 export default planSaga;
