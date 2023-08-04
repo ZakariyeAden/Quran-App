@@ -66,29 +66,64 @@ const Plan = () => {
             let currentDate = moment(row.current_date);
             let deadline = moment(row.deadline);
             return (
-              <TableRow
-                key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{currentDate.format("L")}</TableCell>
-                <TableCell align="right">{deadline.format("L")}</TableCell>
-                <TableCell align="right">
-                  <button onClick={() => handleComplete(row.id)}>
-                    Completed?
-                  </button>
-                </TableCell>
-                <TableCell align="right">
-                  <button onClick={() => handleOpenEditModal(row)}>
-                    Edit?
-                  </button>
-                </TableCell>
-                <TableCell align="right">
-                  <button onClick={() => handleDelete(row.id)}>Delete</button>
-                </TableCell>
-              </TableRow>
+              <>
+                {row.completed === true ? (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    className="completed"
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">
+                      {currentDate.format("L")}
+                    </TableCell>
+                    <TableCell align="right">{deadline.format("L")}</TableCell>
+                    <TableCell align="right">
+                    Completed!
+                    </TableCell>
+                    <TableCell align="right">
+                      <button onClick={() => handleOpenEditModal(row)}>
+                        Edit?
+                      </button>
+                    </TableCell>
+                    <TableCell align="right">
+                      <button onClick={() => handleDelete(row.id)}>
+                        Delete
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">
+                      {currentDate.format("L")}
+                    </TableCell>
+                    <TableCell align="right">{deadline.format("L")}</TableCell>
+                    <TableCell align="right">
+                      <button onClick={() => handleComplete(row.id)}>
+                        Completed?
+                      </button>
+                    </TableCell>
+                    <TableCell align="right">
+                      <button onClick={() => handleOpenEditModal(row)}>
+                        Edit?
+                      </button>
+                    </TableCell>
+                    <TableCell align="right">
+                      <button onClick={() => handleDelete(row.id)}>
+                        Delete
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </>
             );
           })}
         </TableBody>
