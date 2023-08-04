@@ -20,10 +20,12 @@ const EditFormModal = ({ open, handleCloseModal }) => {
   // Submit
   const handleSubmit = event => {
     event.preventDefault();
- 
 
-  
   };
+
+  const handleChange = () => {
+    
+  }
   // Styling the Modal
   const style = {
     position: "absolute",
