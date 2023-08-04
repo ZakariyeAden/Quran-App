@@ -28,7 +28,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     dispatch({
       type: "EDIT_ON_CHANGE",
       payload: {
-        property: [...propertyToChange],
+        property: propertyToChange,
         value: event.target.value,
       },
     });
@@ -41,7 +41,6 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
@@ -64,8 +63,8 @@ const EditFormModal = ({ open, handleCloseModal }) => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="chapters"
-              onChange={(e) => handleChange(e, "name")}
-              value={editPlan.name}
+              onChange={(event) => handleChange(event, "chapter_id")}
+              value={editPlan.chapter_id}
             >
               {chapters.map(chapter => {
                 return (
@@ -77,7 +76,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
             </Select>
 
             <label>Deadline:</label>
-            <TextField type="date" onChange={(e) => handleChange(e, "deadline")} value={editPlan.deadline}>
+            <TextField type="date" onChange={(event) => handleChange(event, "deadline")} >
               Date
             </TextField>
             <Button variant="contained" onClick={handleSubmit}>
