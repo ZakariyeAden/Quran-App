@@ -18,12 +18,17 @@ const Plan = () => {
   const plans = useSelector(state => state.plan);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  // Open Modal
-  const handleOpenModal = () => {
+
+  // Open Edit Modal and get the Row to edit!
+  // Dispatch the row seleted to Edit
+  const handleOpenEditModal = row => {
+    console.log("Row selected to update:", row);
     setOpen(true);
+
+    dispatch({ type: "SET_EDIT_PLAN", payload: row });
   };
   // Close Modal
-  const handleCloseModal = () => {
+  const handleCloseEditModal = () => {
     setOpen(false);
   };
   // Delete by Id
@@ -43,7 +48,7 @@ const Plan = () => {
   return (
     <TableContainer component={Paper}>
       {/* Edit Form Modal after user Clicks Edit to plan */}
-      <EditFormModal handleCloseModal={handleCloseModal} open={open}/>
+      <EditFormModal handleCloseModal={handleCloseEditModal} open={open} />
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -76,7 +81,9 @@ const Plan = () => {
                   </button>
                 </TableCell>
                 <TableCell align="right">
-                  <button onClick={handleOpenModal}>Edit?</button>
+                  <button onClick={() => handleOpenEditModal(row)}>
+                    Edit?
+                  </button>
                 </TableCell>
                 <TableCell align="right">
                   <button onClick={() => handleDelete(row.id)}>Delete</button>
