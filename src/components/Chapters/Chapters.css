@@ -3,3 +3,13 @@
   justify-content: center;
   gap: 1rem;
 }
+.user-heading{
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.user{
+  text-transform: capitalize;
+  font-style: italic;
+  color: blue;
+}

@@ -1,7 +1,8 @@
 // HOOKS
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+// MUI
 import {
   Grid,
   Card,
@@ -9,12 +10,13 @@ import {
   CardContent,
   Button,
 } from "@mui/material";
+// Components
 import FormModal from "../FormModal/FormModal";
+
 const ChapterCard = ({ chapter }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [ open, setOpen ] = useState(false);
-
   // Get the Chapter Id and dispatch:
   const getChapterId = id => {
     // Chapter Id selected by user:
