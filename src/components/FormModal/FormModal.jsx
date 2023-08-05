@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 const FormModal = ({ open, handleCloseModal }) => {
   // HOOKS
   const [planInput, setPlanInput] = useState({ date: '', chapter: ''})
+  const [error,setError] = useState(false);
   const chapters = useSelector(state => state.chapters);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
@@ -23,7 +24,13 @@ const FormModal = ({ open, handleCloseModal }) => {
     // See the logs after submit
     console.log("Date:", planInput.date);
     console.log("Chapter:", planInput.chapter);
-
+    // Add validation
+    if(planInput.chapter === '' || planInput.date === ''){
+      setError(true);
+      return;
+    }
+    // Continue to 'ADD_PLAN' dispatch if inputs are not Empty!
+    setError(false);
     dispatch({
       type: "ADD_PLAN",
       // Data: We need to only recieve the id from Client for chapters selected and user
@@ -60,7 +67,7 @@ const FormModal = ({ open, handleCloseModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <FormControl>
+          <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -68,6 +75,8 @@ const FormModal = ({ open, handleCloseModal }) => {
               label="chapters"
               onChange={e => setPlanInput({...planInput, chapter: e.target.value})}
               value={planInput.chapter}
+              error={error}
+              helperText={error ? 'Please Select a Chapter!' : ''}
             >
               {chapters.map(chapter => {
                 return (
@@ -79,7 +88,7 @@ const FormModal = ({ open, handleCloseModal }) => {
             </Select>
 
             <label>Deadline:</label>
-            <TextField type="date" onChange={e => setPlanInput({...planInput, date: e.target.value})}>
+            <TextField type="date" onChange={e => setPlanInput({...planInput, date: e.target.value})} error={error } helperText={error ? 'Please fill in a Date!' : ''}>
               Date
             </TextField>
             <Button variant="contained" onClick={handleSubmit}>

@@ -8,14 +8,13 @@ import {
   Typography,
   CardContent,
   Button,
-  CardActions,
-  Container,
 } from "@mui/material";
 import FormModal from "../FormModal/FormModal";
 const ChapterCard = ({ chapter }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [open,setOpen] = useState(false);
+  const [ open, setOpen ] = useState(false);
+
   // Get the Chapter Id and dispatch:
   const getChapterId = id => {
     // Chapter Id selected by user:
