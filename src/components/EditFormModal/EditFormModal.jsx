@@ -64,7 +64,6 @@ const EditFormModal = ({ open, handleCloseModal }) => {
               id="demo-simple-select"
               label="chapters"
               onChange={(event) => handleChange(event, "chapter_id")}
-              value={editPlan.chapter_id}
             >
               {chapters.map(chapter => {
                 return (

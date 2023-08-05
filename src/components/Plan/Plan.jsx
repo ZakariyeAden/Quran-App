@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+// MUI and Css
 import {
   Table,
   TableContainer,
@@ -7,8 +7,13 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Button,
 } from "@mui/material";
+import "./Plan.css";
+// HOOKS
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// Components
 import EditFormModal from "../EditFormModal/EditFormModal";
 // Moment Library to fix the Date
 import moment from "moment";
@@ -81,17 +86,28 @@ const Plan = () => {
                     </TableCell>
                     <TableCell align="right">{deadline.format("L")}</TableCell>
                     <TableCell align="right">
-                    Completed!
+                      <ion-icon
+                        name="checkmark-outline"
+                        size="large"
+                        className="checkmark-"
+                        aria-label="Checkmark"
+                      ></ion-icon>
                     </TableCell>
                     <TableCell align="right">
-                      <button onClick={() => handleOpenEditModal(row)}>
-                        Edit?
-                      </button>
+                      <ion-icon
+                        name="create-outline"
+                        size="large"
+                        onClick={() => handleOpenEditModal(row)}
+                        aria-label="Create"
+                      ></ion-icon>
                     </TableCell>
                     <TableCell align="right">
-                      <button onClick={() => handleDelete(row.id)}>
-                        Delete
-                      </button>
+                      <ion-icon
+                        name="trash-outline"
+                        size="large"
+                        class="delete"
+                        onClick={() => handleDelete(row.id)}
+                      ></ion-icon>
                     </TableCell>
                   </TableRow>
                 ) : (
@@ -107,19 +123,28 @@ const Plan = () => {
                     </TableCell>
                     <TableCell align="right">{deadline.format("L")}</TableCell>
                     <TableCell align="right">
-                      <button onClick={() => handleComplete(row.id)}>
+                      <Button
+                        size="small"
+                        onClick={() => handleComplete(row.id)}
+                      >
                         Completed?
-                      </button>
+                      </Button>
                     </TableCell>
                     <TableCell align="right">
-                      <button onClick={() => handleOpenEditModal(row)}>
-                        Edit?
-                      </button>
+                      <ion-icon
+                        name="create-outline"
+                        size="large"
+                        onClick={() => handleOpenEditModal(row)}
+                        aria-label="Create"
+                      ></ion-icon>
                     </TableCell>
                     <TableCell align="right">
-                      <button onClick={() => handleDelete(row.id)}>
-                        Delete
-                      </button>
+                      <ion-icon
+                        name="trash-outline"
+                        size="large"
+                        onClick={() => handleDelete(row.id)}
+                        class="delete"
+                      ></ion-icon>
                     </TableCell>
                   </TableRow>
                 )}

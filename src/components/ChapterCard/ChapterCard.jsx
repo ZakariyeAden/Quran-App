@@ -22,7 +22,7 @@ const ChapterCard = ({ chapter }) => {
     console.log("Chapter Id:", id);
     // Dispatchs for Indivual Chapter and Verses
     dispatch({ type: "SET_CHAPTER_ITEM", payload: id });
-    dispatch({ type: "SET_VERSES", payload: id.id });
+    // dispatch({ type: "SET_VERSES", payload: id.id });
     // Route to Verses page
     history.push(`/user/${id.id}`);
   };
