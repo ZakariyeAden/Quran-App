@@ -1,4 +1,8 @@
+// HOOKS
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+// MUI
 import {
   FormControl,
   InputLabel,
@@ -9,14 +13,16 @@ import {
   Modal,
   Box,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+// Sweetalert
+import Swal from "sweetalert2";
 const FormModal = ({ open, handleCloseModal }) => {
   // HOOKS
-  const [planInput, setPlanInput] = useState({ date: '', chapter: ''})
-  const [error,setError] = useState(false);
+  const [planInput, setPlanInput] = useState({ date: "", chapter: "" });
+  const [error, setError] = useState(false);
   const chapters = useSelector(state => state.chapters);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Submit
   const handleSubmit = event => {
@@ -25,7 +31,7 @@ const FormModal = ({ open, handleCloseModal }) => {
     console.log("Date:", planInput.date);
     console.log("Chapter:", planInput.chapter);
     // Add validation
-    if(planInput.chapter === '' || planInput.date === ''){
+    if (planInput.chapter === "" || planInput.date === "") {
       setError(true);
       return;
     }
@@ -41,6 +47,15 @@ const FormModal = ({ open, handleCloseModal }) => {
         deadline: planInput.date,
       },
     });
+    // Alert
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Added to plan",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    history.push('/plan');
   };
   // Styling the Modal
   const style = {
@@ -73,10 +88,12 @@ const FormModal = ({ open, handleCloseModal }) => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="chapters"
-              onChange={e => setPlanInput({...planInput, chapter: e.target.value})}
+              onChange={e =>
+                setPlanInput({ ...planInput, chapter: e.target.value })
+              }
               value={planInput.chapter}
               error={error}
-              helperText={error ? 'Please Select a Chapter!' : ''}
+              helperText={error ? "Please Select a Chapter!" : ""}
             >
               {chapters.map(chapter => {
                 return (
@@ -88,7 +105,14 @@ const FormModal = ({ open, handleCloseModal }) => {
             </Select>
 
             <label>Deadline:</label>
-            <TextField type="date" onChange={e => setPlanInput({...planInput, date: e.target.value})} error={error } helperText={error ? 'Please fill in a Date!' : ''}>
+            <TextField
+              type="date"
+              onChange={e =>
+                setPlanInput({ ...planInput, date: e.target.value })
+              }
+              error={error}
+              helperText={error ? "Please fill in a Date!" : ""}
+            >
               Date
             </TextField>
             <Button variant="contained" onClick={handleSubmit}>
