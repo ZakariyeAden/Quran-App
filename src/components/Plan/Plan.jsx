@@ -17,7 +17,8 @@ import { useSelector, useDispatch } from "react-redux";
 import EditFormModal from "../EditFormModal/EditFormModal";
 // Moment Library to fix the Date
 import moment from "moment";
-
+// Sweetalert
+import Swal from "sweetalert2";
 const Plan = () => {
   // HOOKS
   const plans = useSelector(state => state.plan);
@@ -46,9 +47,18 @@ const Plan = () => {
     console.log("Id Table row to update from:", id);
     dispatch({ type: "COMPLETE_PLAN", payload: id });
   };
+
+  const ModalAlert = (row) => {
+    Swal.fire({
+      title: 'Sweet!',
+      text: `${row.name} Chapter is passed due`,
+    });
+  }
+ 
   // Load Plan
   useEffect(() => {
     dispatch({ type: "FETCH_PLAN" });
+
   }, []);
   return (
     <TableContainer component={Paper}>
@@ -72,7 +82,7 @@ const Plan = () => {
             let deadline = moment(row.deadline);
             return (
               <>
-                {row.completed === true ? (
+              {row.completed === true ? (
                   <TableRow
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

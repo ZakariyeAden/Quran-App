@@ -40,8 +40,8 @@ const ChapterCard = ({ chapter }) => {
       {/* Form Modal after user Clicks add to plan */}
       <FormModal open={open} handleCloseModal={handleCloseModal}/>
       <Grid item lg={3} md={4} xs={6}>
-        <Card sx={{ minWidth: 375 }}>
-          <CardContent onClick={() => getChapterId(chapter)} className="card">
+        <Card sx={{ minWidth: 375, backgroundColor: "#00366F"}} >
+          <CardContent onClick={() => getChapterId(chapter)} className="card-content">
             <Typography>{chapter.chapter_number}</Typography>
             <Typography>{chapter.name}</Typography>
             <Typography>{chapter.arabic_name}</Typography>

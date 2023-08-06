@@ -5,12 +5,9 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
+// HOOKS
 import { useDispatch, useSelector } from 'react-redux';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
+// Protected Route
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // Components
 import AboutPage from '../AboutPage/AboutPage';
@@ -19,13 +16,14 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VersesList from '../VersesList/VersesList';
-
-import './App.css';
 import Plan from '../Plan/Plan';
+import Footer from '../Footer/Footer';
+import Nav from '../Nav/Nav';
+// CSS
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
 
   useEffect(() => {

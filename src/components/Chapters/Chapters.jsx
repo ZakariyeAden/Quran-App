@@ -15,7 +15,7 @@ const Chapters = () => {
   }, []);
 
   return (
-    <div>
+    <div className="hero-section">
       <h1 className="user-heading">Welcome, <span className="user">{user.username}</span> to the Noble Quran</h1>
       <Grid container spacing={2} className="chapter-card">
         {chapters.map(chapter => {

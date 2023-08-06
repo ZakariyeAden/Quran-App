@@ -7,9 +7,23 @@
   font-size: 2rem;
   margin-bottom: 3rem;
   text-align: center;
+  color: #fff;
 }
 .user{
   text-transform: capitalize;
   font-style: italic;
-  color: blue;
+  color: #00366F;
+}
+.hero-section{
+  background-image: url('../../../public/Images/Login.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.card-content{
+  display: flex;
+  gap: 1rem;
+  color: #fff;
+
+  cursor: pointer;
 }

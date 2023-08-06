@@ -1,4 +1,7 @@
+// HOOKS
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// MUI and CSS
 import {
   FormControl,
   InputLabel,
@@ -9,7 +12,7 @@ import {
   Modal,
   Box,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import "./EditForm.css";
 const EditFormModal = ({ open, handleCloseModal }) => {
   // HOOKS
   const [planInput, setPlanInput] = useState({ date: "", chapter: "" });
@@ -23,7 +26,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     event.preventDefault();
     dispatch({ type: "EDIT_PLAN", payload: editPlan });
   };
-// 
+  //
   const handleChange = (event, propertyToChange) => {
     dispatch({
       type: "EDIT_ON_CHANGE",
@@ -57,13 +60,14 @@ const EditFormModal = ({ open, handleCloseModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <FormControl>
+          <h2 className="form-heading">Edit Plan:</h2>
+          <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="chapters"
-              onChange={(event) => handleChange(event, "chapter_id")}
+              onChange={event => handleChange(event, "chapter_id")}
             >
               {chapters.map(chapter => {
                 return (
@@ -75,7 +79,10 @@ const EditFormModal = ({ open, handleCloseModal }) => {
             </Select>
 
             <label>Deadline:</label>
-            <TextField type="date" onChange={(event) => handleChange(event, "deadline")} >
+            <TextField
+              type="date"
+              onChange={event => handleChange(event, "deadline")}
+            >
               Date
             </TextField>
             <Button variant="contained" onClick={handleSubmit}>

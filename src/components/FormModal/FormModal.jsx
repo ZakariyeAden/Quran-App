@@ -47,7 +47,7 @@ const FormModal = ({ open, handleCloseModal }) => {
         deadline: planInput.date,
       },
     });
-    // Alert
+    // Alert Success!
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -55,7 +55,8 @@ const FormModal = ({ open, handleCloseModal }) => {
       showConfirmButton: false,
       timer: 1500,
     });
-    history.push('/plan');
+    // Go to Plan page
+    history.push("/plan");
   };
   // Styling the Modal
   const style = {
@@ -66,7 +67,6 @@ const FormModal = ({ open, handleCloseModal }) => {
     width: 400,
     bgcolor: "background.paper",
     border: "2px solid #000",
-    boxShadow: 24,
     p: 4,
   };
   // Load Chapters names
@@ -82,6 +82,7 @@ const FormModal = ({ open, handleCloseModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <h2 className="form-heading">Add Plan</h2>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
             <Select
