@@ -47,7 +47,7 @@ const ChapterCard = ({ chapter }) => {
             <Typography>{chapter.arabic_name}</Typography>
             <Typography>{chapter.translated_name}</Typography>
           </CardContent>
-          <Button size="small" onClick={handleOpenModal}>Bookmark</Button>
+          <Button size="small" onClick={handleOpenModal}>Add to Plan</Button>
         </Card>
       </Grid>
     </div>

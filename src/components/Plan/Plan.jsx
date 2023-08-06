@@ -61,7 +61,7 @@ const Plan = () => {
 
   }, []);
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="plan-section">
       {/* Edit Form Modal after user Clicks Edit to plan */}
       <EditFormModal handleCloseModal={handleCloseEditModal} open={open} />
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
