@@ -1,4 +1,8 @@
+// HOOKS
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+// MUI
 import {
   FormControl,
   InputLabel,
@@ -9,13 +13,16 @@ import {
   Modal,
   Box,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+// Sweetalert
+import Swal from "sweetalert2";
 const FormModal = ({ open, handleCloseModal }) => {
   // HOOKS
-  const [planInput, setPlanInput] = useState({ date: '', chapter: ''})
+  const [planInput, setPlanInput] = useState({ date: "", chapter: "" });
+  const [error, setError] = useState(false);
   const chapters = useSelector(state => state.chapters);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Submit
   const handleSubmit = event => {
@@ -23,7 +30,13 @@ const FormModal = ({ open, handleCloseModal }) => {
     // See the logs after submit
     console.log("Date:", planInput.date);
     console.log("Chapter:", planInput.chapter);
-
+    // Add validation
+    if (planInput.chapter === "" || planInput.date === "") {
+      setError(true);
+      return;
+    }
+    // Continue to 'ADD_PLAN' dispatch if inputs are not Empty!
+    setError(false);
     dispatch({
       type: "ADD_PLAN",
       // Data: We need to only recieve the id from Client for chapters selected and user
@@ -34,6 +47,16 @@ const FormModal = ({ open, handleCloseModal }) => {
         deadline: planInput.date,
       },
     });
+    // Alert Success!
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Added to plan",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    // Go to Plan page
+    history.push("/plan");
   };
   // Styling the Modal
   const style = {
@@ -44,7 +67,6 @@ const FormModal = ({ open, handleCloseModal }) => {
     width: 400,
     bgcolor: "background.paper",
     border: "2px solid #000",
-    boxShadow: 24,
     p: 4,
   };
   // Load Chapters names
@@ -60,14 +82,19 @@ const FormModal = ({ open, handleCloseModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <FormControl>
+          <h2 className="form-heading">Add Plan</h2>
+          <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="chapters"
-              onChange={e => setPlanInput({...planInput, chapter: e.target.value})}
+              onChange={e =>
+                setPlanInput({ ...planInput, chapter: e.target.value })
+              }
               value={planInput.chapter}
+              error={error}
+              helperText={error ? "Please Select a Chapter!" : ""}
             >
               {chapters.map(chapter => {
                 return (
@@ -79,7 +106,14 @@ const FormModal = ({ open, handleCloseModal }) => {
             </Select>
 
             <label>Deadline:</label>
-            <TextField type="date" onChange={e => setPlanInput({...planInput, date: e.target.value})}>
+            <TextField
+              type="date"
+              onChange={e =>
+                setPlanInput({ ...planInput, date: e.target.value })
+              }
+              error={error}
+              helperText={error ? "Please fill in a Date!" : ""}
+            >
               Date
             </TextField>
             <Button variant="contained" onClick={handleSubmit}>

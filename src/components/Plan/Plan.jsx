@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+// MUI and Css
 import {
   Table,
   TableContainer,
@@ -7,23 +7,34 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Button,
 } from "@mui/material";
+import "./Plan.css";
+// HOOKS
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// Components
 import EditFormModal from "../EditFormModal/EditFormModal";
 // Moment Library to fix the Date
 import moment from "moment";
-
+// Sweetalert
+import Swal from "sweetalert2";
 const Plan = () => {
   // HOOKS
   const plans = useSelector(state => state.plan);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  // Open Modal
-  const handleOpenModal = () => {
+
+  // Open Edit Modal and get the Row to edit!
+  // Dispatch the row seleted to Edit
+  const handleOpenEditModal = row => {
+    console.log("Row selected to update:", row);
     setOpen(true);
+
+    dispatch({ type: "SET_EDIT_PLAN", payload: row });
   };
   // Close Modal
-  const handleCloseModal = () => {
+  const handleCloseEditModal = () => {
     setOpen(false);
   };
   // Delete by Id
@@ -36,14 +47,23 @@ const Plan = () => {
     console.log("Id Table row to update from:", id);
     dispatch({ type: "COMPLETE_PLAN", payload: id });
   };
+
+  const ModalAlert = (row) => {
+    Swal.fire({
+      title: 'Sweet!',
+      text: `${row.name} Chapter is passed due`,
+    });
+  }
+ 
   // Load Plan
   useEffect(() => {
     dispatch({ type: "FETCH_PLAN" });
+
   }, []);
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="plan-section">
       {/* Edit Form Modal after user Clicks Edit to plan */}
-      <EditFormModal handleCloseModal={handleCloseModal} open={open}/>
+      <EditFormModal handleCloseModal={handleCloseEditModal} open={open} />
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -61,27 +81,84 @@ const Plan = () => {
             let currentDate = moment(row.current_date);
             let deadline = moment(row.deadline);
             return (
-              <TableRow
-                key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{currentDate.format("L")}</TableCell>
-                <TableCell align="right">{deadline.format("L")}</TableCell>
-                <TableCell align="right">
-                  <button onClick={() => handleComplete(row.id)}>
-                    Completed?
-                  </button>
-                </TableCell>
-                <TableCell align="right">
-                  <button onClick={handleOpenModal}>Edit?</button>
-                </TableCell>
-                <TableCell align="right">
-                  <button onClick={() => handleDelete(row.id)}>Delete</button>
-                </TableCell>
-              </TableRow>
+              <>
+              {row.completed === true ? (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    className="completed"
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">
+                      {currentDate.format("L")}
+                    </TableCell>
+                    <TableCell align="right">{deadline.format("L")}</TableCell>
+                    <TableCell align="right">
+                      <ion-icon
+                        name="checkmark-outline"
+                        size="large"
+                        className="checkmark-"
+                        aria-label="Checkmark"
+                      ></ion-icon>
+                    </TableCell>
+                    <TableCell align="right">
+                      <ion-icon
+                        name="create-outline"
+                        size="large"
+                        onClick={() => handleOpenEditModal(row)}
+                        aria-label="Create"
+                      ></ion-icon>
+                    </TableCell>
+                    <TableCell align="right">
+                      <ion-icon
+                        name="trash-outline"
+                        size="large"
+                        class="delete"
+                        onClick={() => handleDelete(row.id)}
+                      ></ion-icon>
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">
+                      {currentDate.format("L")}
+                    </TableCell>
+                    <TableCell align="right">{deadline.format("L")}</TableCell>
+                    <TableCell align="right">
+                      <Button
+                        size="small"
+                        onClick={() => handleComplete(row.id)}
+                      >
+                        Completed?
+                      </Button>
+                    </TableCell>
+                    <TableCell align="right">
+                      <ion-icon
+                        name="create-outline"
+                        size="large"
+                        onClick={() => handleOpenEditModal(row)}
+                        aria-label="Create"
+                      ></ion-icon>
+                    </TableCell>
+                    <TableCell align="right">
+                      <ion-icon
+                        name="trash-outline"
+                        size="large"
+                        onClick={() => handleDelete(row.id)}
+                        class="delete"
+                      ></ion-icon>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </>
             );
           })}
         </TableBody>

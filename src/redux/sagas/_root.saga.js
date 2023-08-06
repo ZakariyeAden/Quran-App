@@ -9,6 +9,7 @@ import formSagas from './form.saga';
 import planSaga from './plan.sagas';
 import deletePlanSagas from './deletePlan.saga'
 import completePlanSaga from './completePlan.saga';
+import editPlanInfoSagas from './editPlan.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -28,5 +29,6 @@ export default function* rootSaga() {
     planSaga(),
     deletePlanSagas(),
     completePlanSaga(),
+    editPlanInfoSagas(),
   ]);
 }

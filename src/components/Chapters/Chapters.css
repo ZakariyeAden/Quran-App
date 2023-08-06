@@ -1,0 +1,29 @@
+.chapter-card{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.user-heading{
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: #fff;
+}
+.user{
+  text-transform: capitalize;
+  font-style: italic;
+  color: #00366F;
+}
+.hero-section{
+  background-image: url('../../../public/Images/Login.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.card-content{
+  display: flex;
+  gap: 1rem;
+  color: #fff;
+
+  cursor: pointer;
+}

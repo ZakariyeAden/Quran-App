@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
 
 // GET for plan
 router.get("/", (req, res) => {
-  let queryText = `SELECT  "chapter_plan"."id", "name", "deadline", "current_date","completed"  FROM "chapter_plan"
+  let queryText = `SELECT  "chapter_plan"."id", "chapter_id", "name", "deadline", "current_date", "completed" FROM "chapter_plan"
   JOIN "chapter"
   ON "chapter"."id"  = "chapter_plan"."chapter_id";`;
 

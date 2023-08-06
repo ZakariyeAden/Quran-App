@@ -1,4 +1,7 @@
+// HOOKS
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// MUI and CSS
 import {
   FormControl,
   InputLabel,
@@ -9,20 +12,29 @@ import {
   Modal,
   Box,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import "./EditForm.css";
 const EditFormModal = ({ open, handleCloseModal }) => {
   // HOOKS
-  const [planInput, setPlanInput] = useState({ date: '', chapter: ''})
+  const [planInput, setPlanInput] = useState({ date: "", chapter: "" });
   const chapters = useSelector(state => state.chapters);
+  const editPlan = useSelector(state => state.editPlan);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   // Submit
   const handleSubmit = event => {
     event.preventDefault();
- 
-
-  
+    dispatch({ type: "EDIT_PLAN", payload: editPlan });
+  };
+  //
+  const handleChange = (event, propertyToChange) => {
+    dispatch({
+      type: "EDIT_ON_CHANGE",
+      payload: {
+        property: propertyToChange,
+        value: event.target.value,
+      },
+    });
   };
   // Styling the Modal
   const style = {
@@ -32,7 +44,6 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
-    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
@@ -49,14 +60,14 @@ const EditFormModal = ({ open, handleCloseModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <FormControl>
+          <h2 className="form-heading">Edit Plan:</h2>
+          <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="chapters"
-              onChange={e => setPlanInput({...planInput, chapter: e.target.value})}
-              value={planInput.chapter}
+              onChange={event => handleChange(event, "chapter_id")}
             >
               {chapters.map(chapter => {
                 return (
@@ -68,7 +79,10 @@ const EditFormModal = ({ open, handleCloseModal }) => {
             </Select>
 
             <label>Deadline:</label>
-            <TextField type="date" onChange={e => setPlanInput({...planInput, date: e.target.value})}>
+            <TextField
+              type="date"
+              onChange={event => handleChange(event, "deadline")}
+            >
               Date
             </TextField>
             <Button variant="contained" onClick={handleSubmit}>

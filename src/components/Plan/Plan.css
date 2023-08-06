@@ -1,0 +1,12 @@
+.completed{
+  background-color: #40c057;
+}
+.delete{
+  color: red;
+}
+.checkmark-{
+  margin-right: 3rem;
+}
+.plan-section{
+  margin: 3rem 0;
+}
