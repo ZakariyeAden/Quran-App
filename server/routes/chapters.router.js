@@ -19,6 +19,23 @@ router.get('/', (req, res) => {
   })
 });
 
+// GET indiviual chapters by id
+router.get('/:id', (req, res) => {
+  let queryText = `SELECT * FROM "chapter" WHERE id = $1;`;
+  let chapterId = req.params.id;
+  pool.query(queryText, [chapterId])
+  .then((result) => {
+    // Send the chapter item to Client
+    res.send(result.rows);
+    console.log('Recieved the indiviual chapter from DB:');
+    // Catch any Errors
+  }).catch((err) => {
+    console.log(`ERROR in GET chapter item: ${queryText}`,err);
+    // Send an ERROR status
+    res.sendStatus(501);
+  })
+});
+
 
 
 module.exports = router;
