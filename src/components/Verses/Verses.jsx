@@ -21,7 +21,7 @@ const VersesList = () => {
     <div>
       <h2>Chapter:{chapter.name}</h2>
       {ayahs.map((verse, key) => {
-        return <p className="ayahs-text" key={key}>{verse.text}</p>;
+        return <p className="ayahs-text" key={key}>{verse?.text}</p>;
       })}
     </div>
   );
