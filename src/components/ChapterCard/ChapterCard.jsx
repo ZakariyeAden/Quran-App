@@ -23,9 +23,10 @@ const ChapterCard = ({ chapter }) => {
   const getChapterId = id => {
     // Chapter Id selected by user:
     console.log("Chapter Id:", id);
-    // Dispatchs for Indivual Chapter and Verses
-    // dispatch({ type: "SET_CHAPTER_ITEM", payload: id });
+    // Dispatchs for Indivual Chapter, Verses and Audio
+    dispatch({ type: "SET_CHAPTER_ITEM", payload: id.id });
     dispatch({ type: "SET_VERSES", payload: id.id });
+    // dispatch({ type: "SET_AUDIO", payload: id.id });
     // Route to Verses page
     history.push(`/user/${id.id}`);
   };

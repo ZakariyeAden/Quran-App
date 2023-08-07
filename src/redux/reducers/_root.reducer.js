@@ -7,6 +7,7 @@ import verses from './verses.reducer'
 import form from './form.reducer'
 import plan from './plan.reducer'
 import editPlan from './editForm.reducer'
+import playAudio from './playAudio.reducer'
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   verses,
   form,
   plan,
-  editPlan
+  editPlan,
+  playAudio
 });
 
 export default rootReducer;

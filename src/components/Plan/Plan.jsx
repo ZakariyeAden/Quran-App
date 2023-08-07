@@ -41,7 +41,8 @@ const Plan = () => {
   // Delete by Id
   const handleDelete = id => {
     console.log("Id Table row to delete from:", id); 
-    // Adding Modal for Sweet Alerts! 
+
+    // Adding Modal for Delete! 
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
