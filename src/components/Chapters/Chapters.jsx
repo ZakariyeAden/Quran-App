@@ -9,6 +9,7 @@ const Chapters = () => {
   const dispatch = useDispatch();
   const chapters = useSelector(state => state.chapters);
   const user = useSelector(state => state.user);
+  
   // Load all of the Chapters
   useEffect(() => {
     dispatch({ type: "FETCH_CHAPTERS" });

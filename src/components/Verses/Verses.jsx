@@ -6,18 +6,16 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Verses.css";
 import { Link } from "react-router-dom";
 const VersesList = () => {
-  const { id } = useParams();
+  const { chapterId } = useParams();
   const chapter = useSelector(state => state.chapterItem);
   const ayahs = useSelector(state => state.verses);
   const audio = useSelector(state => state.playAudio);
-
-  console.log("Ayahs:", ayahs);
   const dispatch = useDispatch();
 
   // Indiviual Chapter item, Verses, and Audio
   useEffect(() => {
-    dispatch({ type: "FETCH_CHAPTER_ITEM", payload: id});
-    dispatch({ type: "FETCH_VERSES", payload: id });
+    dispatch({ type: "FETCH_CHAPTER_ITEM", payload: chapterId });
+    dispatch({ type: "FETCH_VERSES", payload: chapterId });
     // dispatch({ type: "FETCH_AUDIO", payload: id });
   }, []);
 
@@ -29,13 +27,10 @@ const VersesList = () => {
       </Link>
       <div className="d-flex">
         {chapter.map((chapter, key) => {
-          return(
-            <h2 key={key}>Chapter:{chapter.name}</h2>
-          );
+          return <h2 key={key}>Chapter:{chapter.name}</h2>;
         })}
-    
       </div>
-
+      {/* Verses: Map the Verses */}
       {ayahs.map((verse, key) => {
         return (
           <p className="ayahs-text" key={key}>
