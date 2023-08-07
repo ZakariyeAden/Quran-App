@@ -15,18 +15,16 @@ import {
 import "./EditForm.css";
 const EditFormModal = ({ open, handleCloseModal }) => {
   // HOOKS
-  const [planInput, setPlanInput] = useState({ date: "", chapter: "" });
   const chapters = useSelector(state => state.chapters);
-  const editPlan = useSelector(state => state.editPlan);
-  const user = useSelector(state => state.user);
+  const editPlans = useSelector(state => state.editPlan);
   const dispatch = useDispatch();
 
   // Submit
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch({ type: "EDIT_PLAN", payload: editPlan });
+    dispatch({ type: "EDIT_PLAN", payload: editPlans });
   };
-  //
+  // Change the Previous property and show the previous values
   const handleChange = (event, propertyToChange) => {
     dispatch({
       type: "EDIT_ON_CHANGE",
@@ -63,15 +61,17 @@ const EditFormModal = ({ open, handleCloseModal }) => {
           <h2 className="form-heading">Edit Plan:</h2>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
+
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="chapters"
               onChange={event => handleChange(event, "chapter_id")}
+              value={editPlans}
             >
               {chapters.map(chapter => {
                 return (
-                  <MenuItem key={chapter.id} value={chapter.id}>
+                  <MenuItem key={chapter.id} value={editPlans}>
                     {chapter.name}
                   </MenuItem>
                 );
@@ -82,6 +82,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
             <TextField
               type="date"
               onChange={event => handleChange(event, "deadline")}
+              value={editPlans}
             >
               Date
             </TextField>

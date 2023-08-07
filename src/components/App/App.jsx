@@ -15,7 +15,7 @@ import Chapters from '../Chapters/Chapters';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import VersesList from '../VersesList/VersesList';
+import Verses from '../Verses/Verses'
 import Plan from '../Plan/Plan';
 import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
@@ -61,9 +61,9 @@ function App() {
 
           <ProtectedRoute
             exact
-            path="/user/:id"
+            path="/user/:chapterId/:audioId"
           >
-            <VersesList />
+            <Verses />
           </ProtectedRoute>
 
           <ProtectedRoute

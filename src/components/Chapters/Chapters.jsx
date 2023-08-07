@@ -1,14 +1,17 @@
 // HOOKS
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Container } from "@mui/material";
+// Components
 import ChapterCard from "../ChapterCard/ChapterCard";
-// CSS
+// CSS and MUI
 import './Chapters.css'
+import { Grid, Container } from "@mui/material";
+
 const Chapters = () => {
   const dispatch = useDispatch();
   const chapters = useSelector(state => state.chapters);
   const user = useSelector(state => state.user);
+
   // Load all of the Chapters
   useEffect(() => {
     dispatch({ type: "FETCH_CHAPTERS" });

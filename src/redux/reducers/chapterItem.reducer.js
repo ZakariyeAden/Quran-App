@@ -1,4 +1,4 @@
-const chapterItemReducer = (state = {}, action) => {
+const chapterItemReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_CHAPTER_ITEM':
       return action.payload;
