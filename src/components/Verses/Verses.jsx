@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Verses.css";
 import { Link } from "react-router-dom";
 const VersesList = () => {
+  // HOOKS
   const { chapterId } = useParams();
   const chapter = useSelector(state => state.chapterItem);
   const ayahs = useSelector(state => state.verses);
@@ -29,6 +30,7 @@ const VersesList = () => {
         {chapter.map((chapter, key) => {
           return <h2 key={key}>Chapter:{chapter.name}</h2>;
         })}
+        <div>Audio</div>
       </div>
       {/* Verses: Map the Verses */}
       {ayahs.map((verse, key) => {
