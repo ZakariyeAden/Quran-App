@@ -2,23 +2,27 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
+
+import './Verses.css'
 const VersesList = () => {
-  const Params = useParams();
+  const { id } = useParams();
   const chapter = useSelector(state => state.chapterItem);
-  const verses = useSelector(state => state.verses);
+  const ayahs = useSelector(state => state.verses);
+  console.log('Ayahs:',ayahs);
   const dispatch = useDispatch();
 
   // Indiviual Chapter item and Verses
   useEffect(() => {
-    dispatch({ type: "FETCH_CHAPTER_ITEM", payload: Params.id });
-    dispatch({ type: "FETCH_VERSES" });
+    // dispatch({ type: "FETCH_CHAPTER_ITEM"});
+   dispatch({ type: "FETCH_VERSES", payload: id });
   }, []);
-  // Id
-  // console.log("ID", id);
+
   return (
     <div>
-      <h4>Chapter:{chapter.name}</h4>
-      <div></div>
+      <h2>Chapter:{chapter.name}</h2>
+      {ayahs.map((verse, key) => {
+        return <p className="ayahs-text" key={key}>{verse.text}</p>;
+      })}
     </div>
   );
 };

@@ -15,7 +15,7 @@ import Chapters from '../Chapters/Chapters';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import VersesList from '../VersesList/VersesList';
+import Verses from '../Verses/Verses';
 import Plan from '../Plan/Plan';
 import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
@@ -63,7 +63,7 @@ function App() {
             exact
             path="/user/:id"
           >
-            <VersesList />
+            <Verses />
           </ProtectedRoute>
 
           <ProtectedRoute

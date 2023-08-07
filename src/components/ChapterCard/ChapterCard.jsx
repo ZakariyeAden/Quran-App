@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 // MUI
 import {
   Grid,
@@ -13,6 +14,7 @@ import {
 // Components
 import FormModal from "../FormModal/FormModal";
 
+
 const ChapterCard = ({ chapter }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,8 +24,8 @@ const ChapterCard = ({ chapter }) => {
     // Chapter Id selected by user:
     console.log("Chapter Id:", id);
     // Dispatchs for Indivual Chapter and Verses
-    dispatch({ type: "SET_CHAPTER_ITEM", payload: id });
-    // dispatch({ type: "SET_VERSES", payload: id.id });
+    // dispatch({ type: "SET_CHAPTER_ITEM", payload: id });
+    dispatch({ type: "SET_VERSES", payload: id.id });
     // Route to Verses page
     history.push(`/user/${id.id}`);
   };
