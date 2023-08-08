@@ -10,6 +10,7 @@ import planSaga from './plan.sagas';
 import deletePlanSagas from './deletePlan.saga'
 import completePlanSaga from './completePlan.saga';
 import editPlanInfoSagas from './editPlan.saga';
+import playAudioSagas from './playAudio.saga'
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -30,5 +31,6 @@ export default function* rootSaga() {
     deletePlanSagas(),
     completePlanSaga(),
     editPlanInfoSagas(),
+    playAudioSagas(),
   ]);
 }
