@@ -1,19 +1,8 @@
-import { useState } from "react";
-
+import React from "react";
+// Loading Spinner 
 const LoadingSpinner = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
   return (
-    <Backdrop
-      sx={{ color: "#fff", zIndex: theme => theme.zIndex.drawer + 1 }}
-      open={open}
-      onClick={handleClose}
-    >
+    <Backdrop sx={{ color: "#fff", zIndex: theme => theme.zIndex.drawer + 1 }}>
       <CircularProgress color="inherit" />
     </Backdrop>
   );

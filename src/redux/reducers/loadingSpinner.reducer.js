@@ -1,6 +1,6 @@
 const spinnerReducer = (state = false, action) => {
   switch (action.type) {
-    case "SET_SPINNER":
+    case "SHOW_SPINNER":
       return true;
     case "HIDE_SPINNER":
       return false;
