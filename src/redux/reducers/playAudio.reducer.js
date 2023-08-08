@@ -1,4 +1,4 @@
-const versesReducer = (state = [], action) => {
+const versesReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_AUDIO':
       return action.payload;
