@@ -13,16 +13,18 @@ import {
   Box,
 } from "@mui/material";
 import "./EditForm.css";
+
 const EditFormModal = ({ open, handleCloseModal }) => {
   // HOOKS
   const chapters = useSelector(state => state.chapters);
-  const editPlans = useSelector(state => state.editPlan);
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const planToEdit = useSelector(state => state.editPlan);
 
   // Submit
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch({ type: "EDIT_PLAN", payload: editPlans });
+    dispatch({ type: "EDIT_PLAN", payload: planToEdit });
   };
   // Change the Previous property and show the previous values
   const handleChange = (event, propertyToChange) => {
@@ -42,6 +44,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     transform: "translate(-50%, -50%)",
     width: 400,
     bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
@@ -61,28 +64,25 @@ const EditFormModal = ({ open, handleCloseModal }) => {
           <h2 className="form-heading">Edit Plan:</h2>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
-
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="chapters"
-              onChange={event => handleChange(event, "chapter_id")}
-              value={editPlans}
+              onChange={event => handleChange(event, "name")}
+              value={planToEdit.chapter_id}
             >
               {chapters.map(chapter => {
                 return (
-                  <MenuItem key={chapter.id} value={editPlans}>
+                  <MenuItem key={chapter.id} value={chapter.id}>
                     {chapter.name}
                   </MenuItem>
                 );
               })}
             </Select>
-
             <label>Deadline:</label>
             <TextField
               type="date"
               onChange={event => handleChange(event, "deadline")}
-              value={editPlans}
             >
               Date
             </TextField>

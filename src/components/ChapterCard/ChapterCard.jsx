@@ -26,7 +26,7 @@ const ChapterCard = ({ chapter }) => {
       <Grid item lg={3} md={4} xs={6}>
         <Card sx={{ minWidth: 375, backgroundColor: "#00366F" }}>
           <CardContent
-            onClick={() => history.push(`/user/${chapter.id}/${chapter.id}`)}
+            onClick={() => history.push(`/user/${chapter.id}`)}
             className="card-content"
           >
             <Typography>{chapter.chapter_number}</Typography>
@@ -34,7 +34,7 @@ const ChapterCard = ({ chapter }) => {
             <Typography>{chapter.arabic_name}</Typography>
             <Typography>{chapter.translated_name}</Typography>
           </CardContent>
-          <Button size="small" onClick={handleOpenModal}>
+          <Button size="small" onClick={handleOpenModal} className="primary-btn">
             Add to Plan
           </Button>
         </Card>

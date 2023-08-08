@@ -1,33 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Redirect,
   Route,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 // HOOKS
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 // Protected Route
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 // Components
-import AboutPage from '../AboutPage/AboutPage';
-import Chapters from '../Chapters/Chapters';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import Verses from '../Verses/Verses'
-import Plan from '../Plan/Plan';
-import Footer from '../Footer/Footer';
-import Nav from '../Nav/Nav';
+import AboutPage from "../AboutPage/AboutPage";
+import Chapters from "../Chapters/Chapters";
+import LandingPage from "../LandingPage/LandingPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import Verses from "../Verses/Verses";
+import Plan from "../Plan/Plan";
+import Footer from "../Footer/Footer";
+import Nav from "../Nav/Nav";
 // CSS
-import './App.css';
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -59,59 +59,44 @@ function App() {
             <Chapters />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            exact
-            path="/user/:chapterId/:audioId"
-          >
+          <ProtectedRoute exact path="/user/:chapterId">
             <Verses />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            exact
-            path="/plan"
-          >
-            <Plan/>
+          <ProtectedRoute exact path="/plan">
+            <Plan />
           </ProtectedRoute>
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
