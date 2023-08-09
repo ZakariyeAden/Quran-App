@@ -153,6 +153,8 @@ VALUES
 --  SELECT From Chapter Table
 SELECT * FROM "chapter";
 
+
+-- NEED TO INSERT ALL OF THE USERS IN PLAN FOR EACH USER IN ORDER TO POST CHAPTER PLAN
 -- INSERT ALL OF THE USERS IN THE PLAN
 INSERT INTO "plan" ("user_id")
 VALUES 
@@ -171,3 +173,6 @@ ON "chapter"."id"  = "chapter_plan"."chapter_id";
 DELETE FROM "chapter_plan" WHERE id = 1;
 -- UPDATE by id
 UPDATE "chapter_plan" SET "completed" = TRUE WHERE id = 1;
+
+-- Order by Deadline 
+SELECT * FROM "chapter_plan" ORDER BY "deadline";

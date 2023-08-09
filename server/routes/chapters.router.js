@@ -1,9 +1,10 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET chapters
-router.get('/', (req, res) => {
+router.get('/',rejectUnauthenticated, (req, res) => {
   let queryText = `SELECT * FROM "chapter";`;
 
   pool.query(queryText)
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 // GET indiviual chapters by id
-router.get('/:id', (req, res) => {
+router.get('/:id',rejectUnauthenticated, (req, res) => {
   let queryText = `SELECT * FROM "chapter" WHERE id = $1;`;
   let chapterId = req.params.id;
   pool.query(queryText, [chapterId])

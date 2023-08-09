@@ -29,7 +29,6 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     dispatch({
       type: "EDIT_ON_CHANGE",
       payload: {
-        property: propertyToChange,
         value: event.target.value,
       },
     });
@@ -67,11 +66,10 @@ const EditFormModal = ({ open, handleCloseModal }) => {
               id="demo-simple-select"
               label="chapters"
               onChange={event => handleChange(event, "chapter_id")}
-              value={editPlans}
             >
               {chapters.map(chapter => {
                 return (
-                  <MenuItem key={chapter.id} value={editPlans}>
+                  <MenuItem key={chapter.id} value={chapter.id}>
                     {chapter.name}
                   </MenuItem>
                 );
@@ -82,7 +80,6 @@ const EditFormModal = ({ open, handleCloseModal }) => {
             <TextField
               type="date"
               onChange={event => handleChange(event, "deadline")}
-              value={editPlans}
             >
               Date
             </TextField>

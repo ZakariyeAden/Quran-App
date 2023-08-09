@@ -2,11 +2,14 @@
   background-color: #40c057;
 }
 .delete{
-  color: red;
+  color: #c92a2a;
 }
 .checkmark-{
   margin-right: 3rem;
 }
 .plan-section{
   margin: 3rem 0;
+}
+.deadline{
+  background-color: #fa5252;
 }
