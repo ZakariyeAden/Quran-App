@@ -154,6 +154,7 @@ const Plan = () => {
                   <TableRow
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    className={row.deadline < row.current_date ? 'deadline' : ''}
                   >
                     <TableCell component="th" scope="row">
                       {row.name}
@@ -162,7 +163,17 @@ const Plan = () => {
                       {currentDate.format("L")}
                     </TableCell>
                     <TableCell align="right">{deadline.format("L")}</TableCell>
+                    {row.deadline < row.current_date ? (
                     <TableCell align="right">
+                      <Button
+                        size="small"
+                        onClick={() => handleComplete(row.id)}
+                      >
+                        Passed Due:
+                      </Button>
+                    </TableCell>
+                    ) : (
+                      <TableCell align="right">
                       <Button
                         size="small"
                         onClick={() => handleComplete(row.id)}
@@ -170,6 +181,7 @@ const Plan = () => {
                         Completed?
                       </Button>
                     </TableCell>
+                    )}
                     <TableCell align="right">
                       <ion-icon
                         name="create-outline"
