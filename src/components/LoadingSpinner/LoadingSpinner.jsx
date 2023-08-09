@@ -1,4 +1,5 @@
-import {useState} from "react";
+import { useState } from "react";
+import { bool } from "prop-types";
 // Loading Spinner
 const LoadingSpinner = () => {
   return (

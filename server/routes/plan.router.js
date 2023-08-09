@@ -35,7 +35,7 @@ router.post("/",rejectUnauthenticated, (req, res) => {
 router.get("/",rejectUnauthenticated, (req, res) => {
   let queryText = `SELECT  "chapter_plan"."id", "chapter_id", "name", "deadline", "current_date", "completed" FROM "chapter_plan"
   JOIN "chapter"
-  ON "chapter"."id"  = "chapter_plan"."chapter_id";`;
+  ON "chapter"."id"  = "chapter_plan"."chapter_id" ORDER BY "deadline";`;
 
   pool
     .query(queryText)

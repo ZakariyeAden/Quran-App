@@ -173,3 +173,6 @@ ON "chapter"."id"  = "chapter_plan"."chapter_id";
 DELETE FROM "chapter_plan" WHERE id = 1;
 -- UPDATE by id
 UPDATE "chapter_plan" SET "completed" = TRUE WHERE id = 1;
+
+-- Order by Deadline 
+SELECT * FROM "chapter_plan" ORDER BY "deadline";

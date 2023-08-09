@@ -15,8 +15,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // Components
 import EditFormModal from "../EditFormModal/EditFormModal";
-// Moment Library to fix the Date
-import moment from "moment";
 // Sweetalert
 import Swal from "sweetalert2";
 const Plan = () => {
@@ -40,37 +38,29 @@ const Plan = () => {
 
   // Delete by Id
   const handleDelete = id => {
-    console.log("Id Table row to delete from:", id); 
+    console.log("Id Table row to delete from:", id);
 
-    // Adding Modal for Delete! 
+    // Adding Modal for Delete!
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    }).then(result => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
         // Dispatch DELETE_PLAN if Client confirms!
         dispatch({ type: "DELETE_PLAN", payload: id });
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
-        Swal.fire(
-          'Cancelled',
-          'Your plan has been canceled!',
-          'error'
-        )
+        Swal.fire("Cancelled", "Your plan has been canceled!", "error");
       }
-    })
+    });
   };
   // Update To Complete by Id
   const handleComplete = id => {
@@ -78,17 +68,16 @@ const Plan = () => {
     dispatch({ type: "COMPLETE_PLAN", payload: id });
   };
 
-  const ModalAlert = (row) => {
+  const ModalAlert = row => {
     Swal.fire({
-      title: 'Sweet!',
+      title: "Sweet!",
       text: `${row.name} Chapter is passed due`,
     });
-  }
- 
+  };
+
   // Load Plan
   useEffect(() => {
     dispatch({ type: "FETCH_PLAN" });
-
   }, []);
   return (
     <TableContainer component={Paper} className="plan-section">
@@ -107,12 +96,24 @@ const Plan = () => {
         </TableHead>
         <TableBody>
           {plans.map(row => {
-            // Formatting the date with moment library without Time from Database
-            let currentDate = moment(row.current_date);
-            let deadline = moment(row.deadline);
+            // Formatting the date without Time from Database
+            // Current Date
+            const currentDate = new Date(row.current_date);
+            const formattedCurrentDate = currentDate.toLocaleString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            });
+             // Deadline Date
+            const deadlineDate = new Date(row.deadline);
+            const formattedDeadlineDate = deadlineDate.toLocaleString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            });
             return (
               <>
-              {row.completed === true ? (
+                {row.completed === true ? (
                   <TableRow
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -122,9 +123,11 @@ const Plan = () => {
                       {row.name}
                     </TableCell>
                     <TableCell align="right">
-                      {currentDate.format("L")}
+                      {/* {currentDate.format("L")} */}
+                      {formattedCurrentDate}
+                      
                     </TableCell>
-                    <TableCell align="right">{deadline.format("L")}</TableCell>
+                    <TableCell align="right">{formattedDeadlineDate}</TableCell>
                     <TableCell align="right">
                       <ion-icon
                         name="checkmark-outline"
@@ -154,33 +157,35 @@ const Plan = () => {
                   <TableRow
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    className={row.deadline < row.current_date ? 'deadline' : ''}
+                    className={
+                      row.deadline < row.current_date ? "deadline" : ""
+                    }
                   >
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
                     <TableCell align="right">
-                      {currentDate.format("L")}
+                    {formattedCurrentDate}
                     </TableCell>
-                    <TableCell align="right">{deadline.format("L")}</TableCell>
+                    <TableCell align="right">{formattedDeadlineDate}</TableCell>
                     {row.deadline < row.current_date ? (
-                    <TableCell align="right">
-                      <Button
-                        size="small"
-                        onClick={() => handleComplete(row.id)}
-                      >
-                        Passed Due:
-                      </Button>
-                    </TableCell>
+                      <TableCell align="right">
+                        <Button
+                          size="small"
+                          onClick={() => handleComplete(row.id)}
+                        >
+                          Passed Due:
+                        </Button>
+                      </TableCell>
                     ) : (
                       <TableCell align="right">
-                      <Button
-                        size="small"
-                        onClick={() => handleComplete(row.id)}
-                      >
-                        Completed?
-                      </Button>
-                    </TableCell>
+                        <Button
+                          size="small"
+                          onClick={() => handleComplete(row.id)}
+                        >
+                          Completed?
+                        </Button>
+                      </TableCell>
                     )}
                     <TableCell align="right">
                       <ion-icon
