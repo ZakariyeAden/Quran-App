@@ -1,9 +1,10 @@
 const express = require("express");
+const { rejectUnauthenticated } = require("../modules/authentication-middleware");
 const pool = require("../modules/pool");
 const router = express.Router();
 
 // POST for Plan
-router.post("/", (req, res) => {
+router.post("/",rejectUnauthenticated, (req, res) => {
   let queryText = `INSERT INTO "chapter_plan" ("chapter_id","plan_id","deadline")
                    VALUES ($1,$2,$3) `;
 
@@ -31,7 +32,7 @@ router.post("/", (req, res) => {
 });
 
 // GET for plan
-router.get("/", (req, res) => {
+router.get("/",rejectUnauthenticated, (req, res) => {
   let queryText = `SELECT  "chapter_plan"."id", "chapter_id", "name", "deadline", "current_date", "completed" FROM "chapter_plan"
   JOIN "chapter"
   ON "chapter"."id"  = "chapter_plan"."chapter_id";`;
@@ -52,7 +53,7 @@ router.get("/", (req, res) => {
 });
 
 // Delete by Id for Plan
-router.delete("/delete/:id", (req, res) => {
+router.delete("/delete/:id",rejectUnauthenticated, (req, res) => {
   let idToDelete = req.params.id;
   let queryText = `DELETE FROM "chapter_plan" WHERE id = $1;`;
 
@@ -69,7 +70,7 @@ router.delete("/delete/:id", (req, res) => {
 });
 
 // Update to Completed as True by id
-router.put("/complete/:id", (req, res) => {
+router.put("/complete/:id",rejectUnauthenticated, (req, res) => {
   let idToUpdate = req.params.id;
   let queryText = `UPDATE "chapter_plan" SET "completed" = TRUE WHERE id = $1;`;
 
@@ -84,7 +85,7 @@ router.put("/complete/:id", (req, res) => {
     });
 });
 
-router.put("/edit/:id", (req, res) => {
+router.put("/edit/:id",rejectUnauthenticated, (req, res) => {
   let idToUpdate = req.params.id;
   let chapterPlan = req.body;
   // Parameterization for Editing Plan!
