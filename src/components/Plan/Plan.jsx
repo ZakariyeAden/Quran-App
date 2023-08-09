@@ -1,4 +1,4 @@
-// MUI and Css
+// MUI and CSS
 import {
   Table,
   TableContainer,
@@ -22,12 +22,15 @@ const Plan = () => {
   const plans = useSelector(state => state.plan);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [selectedChapter, setSelectedChapter] = useState(null);
 
   // Open Edit Modal and get the Row to edit!
   // Dispatch the row seleted to Edit
-  const handleOpenEditModal = row => {
+  const handleOpenEditModal = (row, id) => {
     console.log("Row selected to update:", row);
     setOpen(true);
+    // const selected = chapters.find((chapter) => chapter.id === id);
+    // setSelectedChapter(selected);
 
     dispatch({ type: "SET_EDIT_PLAN", payload: row });
   };
@@ -67,11 +70,11 @@ const Plan = () => {
     console.log("Id Table row to update from:", id);
     dispatch({ type: "COMPLETE_PLAN", payload: id });
   };
-
+// Send an Alert that Chapter is passed due!
   const ModalAlert = row => {
     Swal.fire({
       title: "Sweet!",
-      text: `${row.name} Chapter is passed due`,
+      text: `${row.name} Chapter is passed due!`,
     });
   };
 
@@ -168,6 +171,7 @@ const Plan = () => {
                     {formattedCurrentDate}
                     </TableCell>
                     <TableCell align="right">{formattedDeadlineDate}</TableCell>
+                    {/* If deadline passed current date alert the Client! */}
                     {row.deadline < row.current_date ? (
                       <TableCell align="right">
                         <Button

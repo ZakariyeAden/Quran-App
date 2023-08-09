@@ -18,6 +18,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
   const chapters = useSelector(state => state.chapters);
   const editPlans = useSelector(state => state.editPlan);
   const dispatch = useDispatch();
+  const [selectedChapter, setSelectedChapter] = useState(null);
 
   // Submit
   const handleSubmit = event => {
@@ -25,7 +26,8 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     dispatch({ type: "EDIT_PLAN", payload: editPlans });
   };
   // Change the Previous property and show the previous values
-  const handleChange = (event, propertyToChange) => {
+  const handleChange = (event, propertyToChange, id) => {
+    // const selected = chapters.find((chapter) => chapter.id === id);
     dispatch({
       type: "EDIT_ON_CHANGE",
       payload: {

@@ -13,8 +13,8 @@ function* fetchChapterPlan() {
   }
 }
 
-function* planSaga() {
+function* chapterPlanSaga() {
   yield takeLatest("FETCH_PLAN", fetchChapterPlan);
 }
 
-export default planSaga;
+export default chapterPlanSaga;

@@ -25,6 +25,7 @@ const ChapterCard = ({ chapter }) => {
       <FormModal open={open} handleCloseModal={handleCloseModal} />
       <Grid item lg={3} md={4} xs={6}>
         <Card sx={{ minWidth: 375, backgroundColor: "#00366F" }}>
+          {/* Go to Verses Page when clicked on content! */}
           <CardContent
             onClick={() => history.push(`/user/${chapter.id}`)}
             className="card-content"

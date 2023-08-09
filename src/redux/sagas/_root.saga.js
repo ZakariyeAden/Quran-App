@@ -5,8 +5,8 @@ import userSaga from './user.saga';
 import chaptersSaga from './chapters.sagas';
 import chapterItemSaga from './chapterItem.sagas';
 import versesSaga from './verses.sagas'
-import formSagas from './form.saga';
-import planSaga from './plan.sagas';
+import planInfoSagas from './planInfo.saga';
+import chapterPlanSaga from './chapterPlan.sagas';
 import deletePlanSagas from './deletePlan.saga'
 import completePlanSaga from './completePlan.saga';
 import editPlanInfoSagas from './editPlan.saga';
@@ -26,8 +26,8 @@ export default function* rootSaga() {
     chaptersSaga(),
     chapterItemSaga(),
     versesSaga(),
-    formSagas(),
-    planSaga(),
+    planInfoSagas(),
+    chapterPlanSaga(),
     deletePlanSagas(),
     completePlanSaga(),
     editPlanInfoSagas(),
