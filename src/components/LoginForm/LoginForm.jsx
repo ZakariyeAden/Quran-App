@@ -1,65 +1,113 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
-
+import { Link } from "react-router-dom";
+// HOOKS
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+// MUI and Assets
+import {
+  Grid,
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+} from "@mui/material";
+import QuranLogo from "../Assets/QuranLogo.png";
+import BackgroundVideo from "../Assets/LoginHeroVideo.mov";
 function LoginForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // HOOKS
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
-
-  const login = (event) => {
+  // Login Form
+  const login = event => {
     event.preventDefault();
 
     if (username && password) {
       dispatch({
-        type: 'LOGIN',
+        type: "LOGIN",
         payload: {
           username: username,
           password: password,
         },
       });
+      // Send Error if inputs invalid
     } else {
-      dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
-  }; // end login
+  }; 
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
-    </form>
+    <div className="background-video form-section">
+      {/* Background Video */}
+      <video autoPlay loop muted>
+        <source src={BackgroundVideo} type="video/mp4" />
+      </video>
+      <form className="formPanel" onSubmit={login} style={{ zIndex: 1 }}>
+        {/* ALERT Message for Login */}
+        {errors.loginMessage && (
+          <h3 className="alert" role="alert">
+            {errors.loginMessage}
+          </h3>
+        )}
+        <Box
+          sx={{
+            marginTop: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <img src={QuranLogo} alt="Quran/Islam Logo" width="150" />
+          <Typography component="h1" variant="h5" sx={{ mb: 4 }}>
+            Login
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                id="password"
+                required
+                fullWidth
+                name="username"
+                label="username"
+                type="text"
+                value={username}
+                onChange={event => setUsername(event.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="password"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                value={password}
+                onChange={event => setPassword(event.target.value)}
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Login
+          </Button>
+
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link to="/registration" variant="body2">
+                Register
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </form>
+    </div>
   );
 }
 
