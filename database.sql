@@ -163,15 +163,18 @@ VALUES
 INSERT INTO "chapter_plan" ("chapter_id","plan_id","deadline" )
 VALUES (1,1,'12/12/2023');
 
--- GET for chapter plan
-SELECT * FROM "chapter_plan"
-JOIN "chapter"
-ON "chapter"."id"  = "chapter_plan"."chapter_id";
+-- GET for chapter plan and Order by Deadline!
+SELECT  "chapter_plan"."id", "chapter_id", "name", "deadline", "current_date", "completed" FROM "chapter_plan"
+  JOIN "chapter"
+  ON "chapter"."id"  = "chapter_plan"."chapter_id" ORDER BY "deadline";
 
--- DELETE
+-- DELETE Chapter Plan by id
 DELETE FROM "chapter_plan" WHERE id = 1;
--- UPDATE by id
+-- UPDATE Chapter Plan by id
 UPDATE "chapter_plan" SET "completed" = TRUE WHERE id = 1;
 
 -- Order by Deadline 
 SELECT * FROM "chapter_plan" ORDER BY "deadline";
+
+-- Update date and completed back to False
+UPDATE "chapter_plan" SET  "deadline" = $1, "completed" = FALSE WHERE id = $2;
