@@ -89,8 +89,8 @@ router.put("/edit/:id",rejectUnauthenticated, (req, res) => {
   let idToUpdate = req.params.id;
   let chapterPlan = req.body;
   // Parameterization for Editing Plan!
-  let editPlanParam = [chapterPlan.chapter, chapterPlan.deadline, idToUpdate];
-  let queryText = `UPDATE "chapter_plan" SET "chapter_id" = $1, "deadline" = $2, "completed" = FALSE WHERE id = $3;`;
+  let editPlanParam = [chapterPlan.deadline, idToUpdate];
+  let queryText = `UPDATE "chapter_plan" SET  "deadline" = $1, "completed" = FALSE WHERE id = $2;`;
 
   pool
     .query(queryText, editPlanParam)
