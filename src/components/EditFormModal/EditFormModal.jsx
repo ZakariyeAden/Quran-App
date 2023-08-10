@@ -18,7 +18,6 @@ const EditFormModal = ({ open, handleCloseModal }) => {
   const chapters = useSelector(state => state.chapters);
   const editPlans = useSelector(state => state.editPlan);
   const dispatch = useDispatch();
-  const [selectedChapter, setSelectedChapter] = useState(null);
 
   // Submit
   const handleSubmit = event => {
@@ -26,11 +25,11 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     dispatch({ type: "EDIT_PLAN", payload: editPlans });
   };
   // Change the Previous property and show the previous values
-  const handleChange = (event, propertyToChange, id) => {
-    // const selected = chapters.find((chapter) => chapter.id === id);
+  const handleChange = (event, propertyToChange) => {
     dispatch({
       type: "EDIT_ON_CHANGE",
       payload: {
+        property: propertyToChange,
         value: event.target.value,
       },
     });
@@ -59,29 +58,13 @@ const EditFormModal = ({ open, handleCloseModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h2 className="form-heading">Edit Plan:</h2>
+          <h2 className="form-heading">Extend your Deadline:</h2>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
-
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="chapters"
-              onChange={event => handleChange(event, "chapter_id")}
-            >
-              {chapters.map(chapter => {
-                return (
-                  <MenuItem key={chapter.id} value={chapter.id}>
-                    {chapter.name}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-
             <label>Deadline:</label>
             <TextField
               type="date"
               onChange={event => handleChange(event, "deadline")}
+              value={editPlans.deadline}
             >
               Date
             </TextField>

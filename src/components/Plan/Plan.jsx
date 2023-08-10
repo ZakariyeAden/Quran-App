@@ -22,15 +22,12 @@ const Plan = () => {
   const plans = useSelector(state => state.plan);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [selectedChapter, setSelectedChapter] = useState(null);
 
   // Open Edit Modal and get the Row to edit!
   // Dispatch the row seleted to Edit
   const handleOpenEditModal = (row, id) => {
     console.log("Row selected to update:", row);
     setOpen(true);
-    // const selected = chapters.find((chapter) => chapter.id === id);
-    // setSelectedChapter(selected);
 
     dispatch({ type: "SET_EDIT_PLAN", payload: row });
   };
@@ -39,7 +36,7 @@ const Plan = () => {
     setOpen(false);
   };
 
-  // Delete by Id
+  // Delete Plan by Id
   const handleDelete = id => {
     console.log("Id Table row to delete from:", id);
 
@@ -65,12 +62,14 @@ const Plan = () => {
       }
     });
   };
-  // Update To Complete by Id
+
+  // Update Plan To Complete by Id
   const handleComplete = id => {
     console.log("Id Table row to update from:", id);
     dispatch({ type: "COMPLETE_PLAN", payload: id });
   };
-// Send an Alert that Chapter is passed due!
+
+  // Send an Alert that Chapter is passed due!
   const ModalAlert = row => {
     Swal.fire({
       title: "Sweet!",
@@ -107,7 +106,7 @@ const Plan = () => {
               day: "numeric",
               year: "numeric",
             });
-             // Deadline Date
+            // Deadline Date
             const deadlineDate = new Date(row.deadline);
             const formattedDeadlineDate = deadlineDate.toLocaleString("en-US", {
               month: "short",
@@ -126,9 +125,7 @@ const Plan = () => {
                       {row.name}
                     </TableCell>
                     <TableCell align="right">
-                      {/* {currentDate.format("L")} */}
                       {formattedCurrentDate}
-                      
                     </TableCell>
                     <TableCell align="right">{formattedDeadlineDate}</TableCell>
                     <TableCell align="right">
@@ -167,12 +164,10 @@ const Plan = () => {
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">
-                    {formattedCurrentDate}
-                    </TableCell>
+                    <TableCell align="right">{formattedCurrentDate}</TableCell>
                     <TableCell align="right">{formattedDeadlineDate}</TableCell>
                     {/* If deadline passed current date alert the Client! */}
-                    {row.deadline < row.current_date ? (
+                    {row.deadline < row.current_date && ModalAlert(row) ? (
                       <TableCell align="right">
                         <Button
                           size="small"
