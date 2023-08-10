@@ -29,7 +29,7 @@ const Verses = ({
 
   return (
     <div className="verse-section">
-      <Link to="/user" className="verse-link">
+      <Link to="/chapters" className="verse-link">
         <ion-icon name="arrow-back-outline" size="medium"></ion-icon> Go Back
         Home
       </Link>

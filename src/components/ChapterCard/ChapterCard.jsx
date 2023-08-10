@@ -26,7 +26,7 @@ const ChapterCard = ({ chapter }) => {
       <Grid item lg={3} md={4} xs={6}>
         <Card sx={{ minWidth: 375, backgroundColor: "#00366F" }}>
           <CardContent
-            onClick={() => history.push(`/user/${chapter.id}`)}
+            onClick={() => history.push(`/chapters/${chapter.id}`)}
             className="card-content"
           >
             <Typography>{chapter.chapter_number}</Typography>
