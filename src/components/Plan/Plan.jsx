@@ -1,4 +1,4 @@
-// MUI and Css
+// MUI and CSS
 import {
   Table,
   TableContainer,
@@ -25,7 +25,7 @@ const Plan = () => {
 
   // Open Edit Modal and get the Row to edit!
   // Dispatch the row seleted to Edit
-  const handleOpenEditModal = row => {
+  const handleOpenEditModal = (row, id) => {
     console.log("Row selected to update:", row);
     setOpen(true);
 
@@ -36,7 +36,7 @@ const Plan = () => {
     setOpen(false);
   };
 
-  // Delete by Id
+  // Delete Plan by Id
   const handleDelete = id => {
     console.log("Id Table row to delete from:", id);
 
@@ -62,16 +62,18 @@ const Plan = () => {
       }
     });
   };
-  // Update To Complete by Id
+
+  // Update Plan To Complete by Id
   const handleComplete = id => {
     console.log("Id Table row to update from:", id);
     dispatch({ type: "COMPLETE_PLAN", payload: id });
   };
 
+  // Send an Alert that Chapter is passed due!
   const ModalAlert = row => {
     Swal.fire({
       title: "Sweet!",
-      text: `${row.name} Chapter is passed due`,
+      text: `${row.name} Chapter is passed due!`,
     });
   };
 
@@ -104,7 +106,7 @@ const Plan = () => {
               day: "numeric",
               year: "numeric",
             });
-             // Deadline Date
+            // Deadline Date
             const deadlineDate = new Date(row.deadline);
             const formattedDeadlineDate = deadlineDate.toLocaleString("en-US", {
               month: "short",
@@ -123,9 +125,7 @@ const Plan = () => {
                       {row.name}
                     </TableCell>
                     <TableCell align="right">
-                      {/* {currentDate.format("L")} */}
                       {formattedCurrentDate}
-                      
                     </TableCell>
                     <TableCell align="right">{formattedDeadlineDate}</TableCell>
                     <TableCell align="right">
@@ -164,11 +164,10 @@ const Plan = () => {
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">
-                    {formattedCurrentDate}
-                    </TableCell>
+                    <TableCell align="right">{formattedCurrentDate}</TableCell>
                     <TableCell align="right">{formattedDeadlineDate}</TableCell>
-                    {row.deadline < row.current_date ? (
+                    {/* If deadline passed current date alert the Client! */}
+                    {row.deadline < row.current_date && ModalAlert(row) ? (
                       <TableCell align="right">
                         <Button
                           size="small"

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+// React Router
 import {
   HashRouter as Router,
   Redirect,
@@ -25,7 +26,7 @@ import "./App.css";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
-
+  // Load User
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
   }, [dispatch]);

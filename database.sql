@@ -9,7 +9,7 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
---Chapters: 114 Table
+--Chapters: 114 chapters Table
 CREATE TABLE "chapter" (
     "id" SERIAL PRIMARY KEY,
     "name" VARCHAR (40) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE "plan" (
     "id" SERIAL PRIMARY KEY,
   	"user_id" INT REFERENCES "user"
 );
--- Chapter Plan for User Table
+-- Chapter Plan for each User Table
 CREATE TABLE "chapter_plan"(
  "id" SERIAL PRIMARY KEY,
  "chapter_id" INT REFERENCES "chapter",
@@ -153,7 +153,6 @@ VALUES
 --  SELECT From Chapter Table
 SELECT * FROM "chapter";
 
-
 -- NEED TO INSERT ALL OF THE USERS IN PLAN FOR EACH USER IN ORDER TO POST CHAPTER PLAN
 -- INSERT ALL OF THE USERS IN THE PLAN
 INSERT INTO "plan" ("user_id")
@@ -164,15 +163,18 @@ VALUES
 INSERT INTO "chapter_plan" ("chapter_id","plan_id","deadline" )
 VALUES (1,1,'12/12/2023');
 
--- GET for plan
-SELECT * FROM "chapter_plan"
-JOIN "chapter"
-ON "chapter"."id"  = "chapter_plan"."chapter_id";
+-- GET for chapter plan and Order by Deadline!
+SELECT  "chapter_plan"."id", "chapter_id", "name", "deadline", "current_date", "completed" FROM "chapter_plan"
+  JOIN "chapter"
+  ON "chapter"."id"  = "chapter_plan"."chapter_id" ORDER BY "deadline";
 
--- DELETE
+-- DELETE Chapter Plan by id
 DELETE FROM "chapter_plan" WHERE id = 1;
--- UPDATE by id
+-- UPDATE Chapter Plan by id
 UPDATE "chapter_plan" SET "completed" = TRUE WHERE id = 1;
 
 -- Order by Deadline 
 SELECT * FROM "chapter_plan" ORDER BY "deadline";
+
+-- Update date and completed back to False
+UPDATE "chapter_plan" SET  "deadline" = $1, "completed" = FALSE WHERE id = $2;

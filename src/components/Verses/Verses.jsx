@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Sound from "react-sound";
 // CSS
 import "./Verses.css";
-const VersesList = ({
+const Verses = ({
   handleSongLoading,
   handleSongPlaying,
   handleSongFinishedPlaying,
@@ -69,4 +69,4 @@ const VersesList = ({
   );
 };
 
-export default VersesList;
+export default Verses;
