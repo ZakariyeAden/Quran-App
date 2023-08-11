@@ -124,9 +124,7 @@ const Plan = () => {
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">
-                      {formattedCurrentDate}
-                    </TableCell>
+                    <TableCell align="right">{formattedCurrentDate}</TableCell>
                     <TableCell align="right">{formattedDeadlineDate}</TableCell>
                     <TableCell align="right">
                       <ion-icon

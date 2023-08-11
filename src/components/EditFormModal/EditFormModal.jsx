@@ -45,10 +45,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     boxShadow: 24,
     p: 4,
   };
-  // Load Chapters names
-  useEffect(() => {
-    dispatch({ type: "FETCH_CHAPTERS" });
-  }, []);
+  
   return (
     <div>
       <Modal

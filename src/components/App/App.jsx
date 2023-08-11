@@ -20,6 +20,7 @@ import Verses from "../Verses/Verses";
 import Plan from "../Plan/Plan";
 import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
+import Profile from "../Profile/Profile";
 // CSS
 import "./App.css";
 
@@ -55,12 +56,19 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/user"
+            path="/profile"
+          >
+            <Profile />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/chapters"
           >
             <Chapters />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/user/:chapterId">
+          <ProtectedRoute exact path="/chapters/:chapterId">
             <Verses />
           </ProtectedRoute>
 
@@ -71,7 +79,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/profile" />
             ) : (
               // Otherwise, show the login page
               <LoginPage />
@@ -82,7 +90,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/profile" />
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
@@ -93,7 +101,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/profile" />
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />

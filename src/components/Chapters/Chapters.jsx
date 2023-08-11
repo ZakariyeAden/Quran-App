@@ -23,8 +23,8 @@ const Chapters = () => {
     <div className="hero-section">
       <div>
         <h1 className="user-heading">
-          Welcome, <span className="user">{user.username}</span> to the Noble
-          Quran
+          Welcome, <span className="user">{user.username}</span> to Glorious
+          Noble Quran - Select a Chapter
         </h1>
         <Grid container spacing={2} className="chapter-card">
           {chapters.map(chapter => {
