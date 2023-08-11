@@ -30,8 +30,8 @@ const Verses = ({
   return (
     <div className="verse-section">
       <Link to="/chapters" className="verse-link">
-        <ion-icon name="arrow-back-outline" size="medium"></ion-icon> Go Back
-        Home
+        <ion-icon name="arrow-back-outline" size="medium"></ion-icon> Back to
+        Selections
       </Link>
       <div className="d-flex">
         {chapter.map((chapter, key) => {

@@ -19,7 +19,7 @@ const Chapters = () => {
 
   return (
     <div className="hero-section">
-      <h1 className="user-heading">Welcome, <span className="user">{user.username}</span> to the Noble Quran</h1>
+      <h1 className="user-heading">Welcome, <span className="user">{user.username}</span> to the Noble Quran - Select a Chapter</h1>
       <Grid container spacing={2} className="chapter-card">
         {chapters.map(chapter => {
           return <ChapterCard chapter={chapter} key={chapter.id} />;
