@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import QuranLogo from '../Assets/QuranLogo.png'
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
     <div className="nav">
-      <Link to="/home">
+      <Link to="/home" className="primary-link">
+        <img src={QuranLogo} alt="Quran Logo" width="50"/>
         <h2 className="nav-title">Al Quran</h2>
       </Link>
       <div>

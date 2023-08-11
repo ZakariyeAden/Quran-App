@@ -10,7 +10,7 @@ import FormModal from "../FormModal/FormModal";
 const ChapterCard = ({ chapter }) => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
-  
+
   // Open Modal
   const handleOpenModal = () => {
     setOpen(true);
@@ -34,9 +34,10 @@ const ChapterCard = ({ chapter }) => {
             <Typography>{chapter.arabic_name}</Typography>
             <Typography>{chapter.translated_name}</Typography>
           </CardContent>
-          <Button size="small" onClick={handleOpenModal} className="primary-btn">
+          <div size="small" onClick={handleOpenModal} className="primary-btn">
+            <ion-icon name="bookmark-outline" size="small"></ion-icon>
             Add to Plan
-          </Button>
+          </div>
         </Card>
       </Grid>
     </div>

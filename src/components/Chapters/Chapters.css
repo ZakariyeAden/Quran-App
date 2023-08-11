@@ -1,32 +1,38 @@
-.chapter-card{
+.chapter-card {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
-.user-heading{
+.user-heading {
   font-size: 2rem;
   margin-bottom: 3rem;
   text-align: center;
   color: #fff;
+  font-weight: 100;
 }
-.user{
+.user {
   text-transform: capitalize;
-  font-style: italic;
-  color: #00366F;
+  font-style: bold;
+  color: #00366f;
+  font-weight: 500;
 }
-.hero-section{
-  background-image: url('../../../public/Images/Login.jpg');
+.hero-section {
+  background-image: url("../Assets/QuranHero.jpg");
   background-position: center;
   background-size: cover;
 }
 
-.card-content{
+.card-content {
   display: flex;
   gap: 1rem;
   color: #fff;
 
   cursor: pointer;
 }
-.primary-btn{
+.primary-btn {
   color: #fff;
+  cursor: pointer;
+  margin: 0rem 0rem 1rem 0.7rem;
+  display: flex;
+  gap: 0.3rem;
 }
