@@ -24,7 +24,7 @@ const ChapterCard = ({ chapter }) => {
       {/* Form Modal after user Clicks add to plan */}
       <FormModal open={open} handleCloseModal={handleCloseModal} />
       <Grid item lg={3} md={4} xs={6}>
-        <Card sx={{ minWidth: 375, backgroundColor: "#00366F" }}>
+        <Card sx={{ minWidth: 375, backgroundColor: "#00366F" }} >
           <CardContent
             onClick={() => history.push(`/chapters/${chapter.id}`)}
             className="card-content"
