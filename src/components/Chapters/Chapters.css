@@ -29,12 +29,18 @@
 .user-heading {
   font-size: 2rem;
   margin-bottom: 3rem;
+  font-weight: 100;
   text-align: center;
   color: #fff;
 }
+.profile-heading{
+  color: #000;
+  margin-top: 3rem;
+}
 .user {
   text-transform: capitalize;
-  font-style: italic;
+  font-style: bold;
+  font-weight: 500;
   color: #00366f;
 }
 

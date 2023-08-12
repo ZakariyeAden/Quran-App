@@ -1,15 +1,31 @@
+.plan-section{
+  margin: 1rem 0;
+}
+.plan-heading{
+  font-size: 1.9rem;
+  color: #00366f;
+}
+/* **************************** */
+/* Icons and completed/deadline  */
+/* **************************** */
 .completed{
   background-color: #40c057;
+}
+.checkmark-icon{
+  margin-right: 1rem;
 }
 .delete{
   color: #c92a2a;
 }
-.checkmark-{
-  margin-right: 3rem;
-}
-.plan-section{
-  margin: 3rem 0;
-}
 .deadline{
   background-color: #fa5252;
+}
+/* ************ */
+/* Helpers        */
+/* ************ */
+.mt{
+  margin-top: 2rem;
+}
+.checkmark-{
+  margin-right: 3rem;
 }

@@ -30,19 +30,31 @@ const Verses = ({
   return (
     <div className="verse-section">
       <Link to="/chapters" className="verse-link">
-        <ion-icon name="arrow-back-outline" size="medium"></ion-icon> Go Back
-        to Selections
+        <span className="arrow-icon">
+          <ion-icon name="arrow-back-outline" size="medium"></ion-icon>
+        </span>
+        Go Back to Selections
       </Link>
       <div className="d-flex">
         {chapter.map((chapter, key) => {
-          return <h2 key={key}>Chapter:{chapter.name}</h2>;
+          return (
+            <h2 key={key}>
+              Chapter:<span className="chapter-name">{chapter.name}</span>
+            </h2>
+          );
         })}
         {/* Controll Buttons to Play Audio */}
         <div onClick={() => setPlayAudio(!playAudio)}>
           {!playAudio ? (
-            <ion-icon name="play-outline" size="large"></ion-icon>
+            <span className="control-icon">
+              <ion-icon name="play" size="large"></ion-icon>
+              Play
+            </span>
           ) : (
-            <ion-icon name="pause-outline" size="large"></ion-icon>
+            <span className="control-icon">
+              <ion-icon name="pause" size="large"></ion-icon>
+              Stop
+            </span>
           )}
         </div>
         <div>

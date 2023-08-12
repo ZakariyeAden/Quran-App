@@ -9,7 +9,7 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/chapters" className="primary-link">
+      <Link to="/home" className="primary-link">
         <img src={QuranLogo} alt="Quran Logo" width="50" />
         <h2 className="nav-title">Al Quran</h2>
       </Link>

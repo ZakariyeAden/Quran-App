@@ -1,3 +1,9 @@
+.verse-section{
+  padding: 3rem 0;
+}
+/* ************** */
+/* Headings and Text */
+/* ************** */
 .ayahs-text{
   text-align: center;
   font-size: 1.5rem;
@@ -5,17 +11,38 @@
   letter-spacing: 2.px;
   font-size: 2rem;
 }
+.chapter-name{
+  color: #00366f;
+  margin: 0 0 0 0.75rem;
+}
+.verse-link{
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  
 
+  text-decoration: none;
+  margin: 0 0 0 1rem;
+  color: #00366f;
+  font-size: 1.3rem;
+}
+/* ************** */
+/* Icons */
+/* ************** */
+.control-icon{
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 1rem;
+  cursor: pointer;
+}
+.arrow-icon{
+  margin: 0 0.3rem 0 0;
+}
+/* ************** */
+/* Resuseable */
+/* ************** */
 .d-flex{
   display: flex;
   justify-content: center;
-}
-.verse-section{
-  padding: 3rem 0;
-}
-.verse-link{
-  text-decoration: none;
-  color: #000;
-  margin: 2rem;
-  font-size: 1.3rem;
+  align-items: center;
 }

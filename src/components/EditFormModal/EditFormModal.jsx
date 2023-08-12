@@ -11,7 +11,9 @@ import {
   Button,
   Modal,
   Box,
+  Grid,
 } from "@mui/material";
+import QuranHero from "../Assets/Quran.jpg";
 import "./EditForm.css";
 const EditFormModal = ({ open, handleCloseModal }) => {
   // HOOKS
@@ -45,7 +47,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
     boxShadow: 24,
     p: 4,
   };
-  
+
   return (
     <div>
       <Modal
@@ -55,20 +57,33 @@ const EditFormModal = ({ open, handleCloseModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <h2 className="form-heading">Extend your Deadline:</h2>
-          <FormControl fullWidth>
-            <label>Deadline:</label>
-            <TextField
-              type="date"
-              onChange={event => handleChange(event, "deadline")}
-              value={editPlans.deadline}
-            >
-              Date
-            </TextField>
-            <Button variant="contained" onClick={handleSubmit}>
-              Submit
-            </Button>
-          </FormControl>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <img src={QuranHero} alt="Quran" className="quran-img" />
+            </Grid>
+            <Grid item xs={12}>
+              <h2 className="form-heading">Extend your Deadline:</h2>
+              <FormControl fullWidth>
+                <label>Deadline:</label>
+                <TextField
+                  type="date"
+                  onChange={event => handleChange(event, "deadline")}
+                  value={editPlans.deadline}
+                >
+                  Date
+                </TextField>
+                <Button
+                  variant="contained"
+                  onClick={handleSubmit}
+                  sx={{
+                    marginTop: "1rem",
+                  }}
+                >
+                  Submit
+                </Button>
+              </FormControl>
+            </Grid>
+          </Grid>
         </Box>
       </Modal>
     </div>

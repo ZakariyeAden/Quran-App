@@ -1,4 +1,4 @@
-// MUI and CSS
+// MUI and Assets
 import {
   Table,
   TableContainer,
@@ -9,6 +9,7 @@ import {
   TableBody,
   Button,
 } from "@mui/material";
+import QuranLogo from '../Assets/QuranLogo.png'
 import "./Plan.css";
 // HOOKS
 import { useState, useEffect } from "react";
@@ -82,6 +83,11 @@ const Plan = () => {
     dispatch({ type: "FETCH_PLAN" });
   }, []);
   return (
+    <>
+    <div className="d-flex mt">
+    <img src={QuranLogo} alt="Quran Logo" width="100"/>
+    <h1 className="plan-heading">Read, Study, Memorize, and learn the Quran</h1>
+    </div>
     <TableContainer component={Paper} className="plan-section">
       {/* Edit Form Modal after user Clicks Edit to plan */}
       <EditFormModal handleCloseModal={handleCloseEditModal} open={open} />
@@ -127,12 +133,14 @@ const Plan = () => {
                     <TableCell align="right">{formattedCurrentDate}</TableCell>
                     <TableCell align="right">{formattedDeadlineDate}</TableCell>
                     <TableCell align="right">
+                      <span className="checkmark-icon">
                       <ion-icon
                         name="checkmark-outline"
                         size="large"
                         className="checkmark-"
                         aria-label="Checkmark"
                       ></ion-icon>
+                      </span>
                     </TableCell>
                     <TableCell align="right">
                       <ion-icon
@@ -208,6 +216,7 @@ const Plan = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 };
 
