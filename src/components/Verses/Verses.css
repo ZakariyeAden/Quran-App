@@ -7,8 +7,7 @@
 .ayahs-text{
   text-align: center;
   font-size: 1.5rem;
-  line-height: 2;
-  letter-spacing: 2.px;
+  line-height: 1.5;
   font-size: 2rem;
 }
 .chapter-name{
@@ -17,12 +16,12 @@
 }
 .verse-link{
   display: flex;
+  justify-content: flex-start;
   flex-direction: row;
-  gap: 0rem;
   
 
   text-decoration: none;
-  margin: 0 0 0 1rem;
+  margin: 0 70rem 0 1rem;
   color: #00366f;
   font-size: 1.3rem;
 }
@@ -36,7 +35,7 @@
   cursor: pointer;
 }
 .arrow-icon{
-  margin: 0 0.3rem 0 0;
+  margin: 0 0.2rem 0 0;
 }
 /* ************** */
 /* Resuseable */

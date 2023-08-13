@@ -97,7 +97,22 @@ Alert
   color: #e01616;
   font-size: 0.8rem;
 }
-
+/* ******************* */
+/* About*/
+/* ******************* */
+.about-container{
+  padding: 4rem 0;
+}
+.img-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.linkedin, .about-heading{
+  font-weight: 500;
+  color: #00366f;
+}
 /* --------------------------------------------------------------------------------
 Form Treatment
 -------------------------------------------------------------------------------- */
