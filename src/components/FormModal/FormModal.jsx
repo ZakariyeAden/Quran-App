@@ -89,7 +89,7 @@ const FormModal = ({ open, handleCloseModal }) => {
               <img src={QuranHero} alt="Quran" className="quran-img" />
             </Grid>
             <Grid item xs={12}>
-              <h2 className="form-heading">Add Plan</h2>
+              <h2 className="form-heading">Add to Plan</h2>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Chapters</InputLabel>
                 <Select

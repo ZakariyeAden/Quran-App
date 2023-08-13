@@ -1,9 +1,33 @@
 .plan-section{
   margin: 1rem 0;
 }
+.verse-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* **************************** */
+/* Headings                      */
+/* **************************** */
 .plan-heading{
   font-size: 1.9rem;
   color: #00366f;
+}
+.quran-subheading span{
+  color: #00366f;
+}
+.quran-heading{
+  font-weight: 100;
+  font-style: normal;
+  line-height: 1.5;
+}
+.quran-subheading{
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
 }
 /* **************************** */
 /* Icons and completed/deadline  */
@@ -19,6 +43,10 @@
 }
 .deadline{
   background-color: #fa5252;
+}
+.icon{
+  font-size: 3rem;
+  width: 100px;
 }
 /* ************ */
 /* Helpers        */
