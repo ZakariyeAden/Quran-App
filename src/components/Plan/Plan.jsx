@@ -53,7 +53,7 @@ const Plan = () => {
       reverseButtons: true,
     }).then(result => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire("Deleted!", "Your Plan has been deleted.", "success");
         // Dispatch DELETE_PLAN if Client confirms!
         dispatch({ type: "DELETE_PLAN", payload: id });
       } else if (

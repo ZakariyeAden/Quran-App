@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom'
 // HOOKS
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,16 +16,30 @@ import {
 } from "@mui/material";
 import QuranHero from "../Assets/Quran.jpg";
 import "./EditForm.css";
+// Sweetalert
+import Swal from "sweetalert2";
 const EditFormModal = ({ open, handleCloseModal }) => {
   // HOOKS
   const chapters = useSelector(state => state.chapters);
   const editPlans = useSelector(state => state.editPlan);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Submit
   const handleSubmit = event => {
     event.preventDefault();
     dispatch({ type: "EDIT_PLAN", payload: editPlans });
+
+      // Alert Success!
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Extended your Deadline!",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      // Go to Back Plan page
+      history.push("/plan");
   };
   // Change the Previous property and show the previous values
   const handleChange = (event, propertyToChange) => {
