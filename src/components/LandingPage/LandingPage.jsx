@@ -16,12 +16,9 @@ function LandingPage() {
 
       <Grid container={2}>
         <Grid item xs={8} md={8} lg={8} className="grid-helper-">
-          <h2>Welcome to Al Quran </h2>
+          <h2 className="register-heading">Welcome to Al Quran </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-            Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-            luctus. Duis a sapien metus.
+         Where you can read,study,memorize Noble Quran
           </p>
         </Grid>
 

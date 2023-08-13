@@ -62,10 +62,10 @@ function AboutPage() {
           {/* Thank You! */}
           <h3>Thank You</h3>
           <p>
-            I wanna give thanks to Prime Digital Academy for teaching us tools
+            I wanna give thanks to Prime Digital Academy and instructors for teaching us tools
             to build these exceptional projects! A big thank you goes out to my
             cohort as well, for their support,compassion, and collaborative
-            spirit in bringing group projects!Lastly,thanks to my family,
+            spirit in during cohort! Lastly,thanks to my family,
             friends, and the previous cohort for their continuous support
             throughout my journey.
           </p>
