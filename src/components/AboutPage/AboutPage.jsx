@@ -2,10 +2,6 @@ import React from "react";
 // MUI and Assets
 import { Grid } from "@mui/material";
 import LinkedInCode from "../Assets/LinkedInBarcode.jpeg";
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
 
 function AboutPage() {
   return (
@@ -53,8 +49,14 @@ function AboutPage() {
               Have Verses be highlighed while the audio is playing along! Making
               it easier for user to follow along with the Quran.
             </li>
-            <li>Better User Interaction</li>
-            <li>English translation for each chapter</li>
+            <li>
+              English translation for each chapter and better user interaction
+            </li>
+            <li>
+              Adding Admin, and user able to make comments in Verses while Admin
+              has control to delete offensive comments and send message to user
+              an Alert!
+            </li>
           </ul>
 
           {/* Thank You! */}
@@ -63,9 +65,9 @@ function AboutPage() {
             I wanna give thanks to Prime Digital Academy for teaching us tools
             to build these exceptional projects! A big thank you goes out to my
             cohort as well, for their support,compassion, and collaborative
-            spirit in bringing group projects!Lastly,thanks to my
-            family, friends, and the previous cohort for their continuous
-            support throughout my journey.
+            spirit in bringing group projects!Lastly,thanks to my family,
+            friends, and the previous cohort for their continuous support
+            throughout my journey.
           </p>
         </Grid>
       </Grid>
