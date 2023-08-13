@@ -76,6 +76,7 @@ const Plan = () => {
     Swal.fire({
       title: "Sweet!",
       text: `${row.name} Chapter is passed due!`,
+      timer: 3000,
     });
   };
 

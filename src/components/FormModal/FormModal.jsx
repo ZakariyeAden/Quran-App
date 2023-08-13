@@ -52,14 +52,14 @@ const FormModal = ({ open, handleCloseModal }) => {
     });
     // Alert Success!
     Swal.fire({
-      position: "top-end",
+      position: "center",
       icon: "success",
       title: "Added to plan",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 3000,
     });
-    // Go to Plan page
-    history.push("/plan");
+    // Go to Chapters page
+    history.push("/chapters");
   };
   // Styling the Modal
   const style = {
