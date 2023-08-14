@@ -88,7 +88,7 @@ const Form = () => {
 
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/login" variant="body2">
+              <Link to="/login" variant="body2" className="signin-link">
                 Already have an account? Sign in
               </Link>
             </Grid>

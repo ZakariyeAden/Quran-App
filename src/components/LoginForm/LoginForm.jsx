@@ -100,7 +100,7 @@ function LoginForm() {
 
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/registration" variant="body2">
+              <Link to="/registration" variant="body2" className="register-link">
                 Register
               </Link>
             </Grid>
