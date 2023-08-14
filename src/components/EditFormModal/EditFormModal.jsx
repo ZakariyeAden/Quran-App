@@ -1,5 +1,5 @@
-import { useHistory } from 'react-router-dom'
 // HOOKS
+import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // MUI and CSS
@@ -38,7 +38,7 @@ const EditFormModal = ({ open, handleCloseModal }) => {
         showConfirmButton: false,
         timer: 3000,
       });
-      // Go to Back Plan page
+      // Go Back to Plan page
       history.push("/plan");
   };
   // Change the Previous property and show the previous values

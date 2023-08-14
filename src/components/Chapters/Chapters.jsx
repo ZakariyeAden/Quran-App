@@ -9,6 +9,7 @@ import "./Chapters.css";
 import { Grid, Container } from "@mui/material";
 
 const Chapters = () => {
+  // HOOKS
   const dispatch = useDispatch();
   const chapters = useSelector(state => state.chapters);
   const user = useSelector(state => state.user);
