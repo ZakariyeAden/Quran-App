@@ -74,7 +74,7 @@ const Plan = () => {
   // Send an Alert that Chapter is passed due!
   const ModalAlert = row => {
     Swal.fire({
-      title: "Sweet!",
+      title: `${row.name}`,
       text: `${row.name} Chapter is passed due!`,
       timer: 3000,
     });

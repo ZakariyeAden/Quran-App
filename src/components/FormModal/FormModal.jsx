@@ -56,7 +56,7 @@ const FormModal = ({ open, handleCloseModal }) => {
       icon: "success",
       title: "Added to plan",
       showConfirmButton: false,
-      timer: 3000,
+      timer: 5000,
     });
     // Go to Chapters page
     history.push("/chapters");
