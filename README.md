@@ -1,7 +1,7 @@
 # Al Quran
 
 2 Week Solo Project Sprint
-![Screen Shot](/components/Assets/QuranLogo.png)
+![Screen Shot](/src/components/Assets/QuranLogo.png)
 
 # Description
 
