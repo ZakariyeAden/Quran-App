@@ -65,7 +65,7 @@ function AboutPage() {
             I wanna give thanks to Prime Digital Academy and instructors for teaching us tools
             to build these exceptional projects! A big thank you goes out to my
             cohort as well, for their support,compassion, and collaborative
-            spirit in during cohort! Lastly,thanks to my family,
+            spirit during cohort! Lastly,thanks to my family,
             friends, and the previous cohort for their continuous support
             throughout my journey.
           </p>
